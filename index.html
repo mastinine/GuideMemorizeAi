@@ -1,0 +1,2336 @@
+
+<html>
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+ <link rel="icon" type="image/png" sizes="32x32" href="icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guide MemorizeAi - Enciclopédia Curricular, Teoria Aprofundada & Download</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Plus Jakarta Sans, Outfit & Fira Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            heading: ['"Outfit"', 'sans-serif'],
+            mono: ['"Fira Code"', 'monospace'],
+          },
+          colors: {
+            dark: {
+              950: '#05070b',
+              900: '#080c14',
+              850: '#0e1422',
+              800: '#141d2e',
+              700: '#1e293d',
+              600: '#334155'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --gradient-border: linear-gradient(135deg, #3b82f6 0%, #a855f7 50%, #ef4444 100%);
+    }
+
+    button, a, .clickable-btn {
+      transition: transform 0.12s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+      user-select: none;
+    }
+    button:active, a:active, .clickable-btn:active {
+      transform: scale(0.96) !important;
+    }
+
+    /* Cores Modo Claro */
+    html.light body {
+      background-color: #f8fafc;
+      color: #1e293b;
+    }
+    html.light .bg-[#05070b] { background-color: #f8fafc !important; }
+    html.light .bg-[#080c14] { background-color: #ffffff !important; }
+    html.light .bg-[#0e1422] { background-color: #f1f5f9 !important; }
+    html.light .bg-[#0b101c] { background-color: #e2e8f0 !important; }
+    html.light .border-slate-800 { border-color: #cbd5e1 !important; }
+    html.light .border-slate-700 { border-color: #94a3b8 !important; }
+    html.light .text-slate-200 { color: #0f172a !important; }
+    html.light .text-slate-300 { color: #334155 !important; }
+    html.light .text-slate-400 { color: #475569 !important; }
+    html.light .text-white { color: #0f172a !important; }
+
+    .btn-gradient-active {
+      position: relative;
+      border-radius: 0.6rem;
+      z-index: 1;
+    }
+    .btn-gradient-active::before {
+      content: "";
+      position: absolute;
+      inset: -1.5px;
+      border-radius: inherit;
+      padding: 1.5px;
+      background: var(--gradient-border);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .vocab-word {
+      border-bottom: 2px dashed #a855f7;
+      color: #38bdf8;
+      cursor: pointer;
+      font-weight: 600;
+      padding: 0 4px;
+      border-radius: 3px;
+      background: rgba(168, 85, 247, 0.08);
+      transition: all 0.2s ease;
+    }
+    html.light .vocab-word { color: #7c3aed; }
+    .vocab-word:hover {
+      background: rgba(168, 85, 247, 0.25);
+      color: #ffffff;
+    }
+
+    * {
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+
+    .highlight-flash {
+      box-shadow: 0 0 0 2px #a855f7, 0 0 25px rgba(168, 85, 247, 0.5);
+      background-color: rgba(168, 85, 247, 0.15) !important;
+      transition: all 0.4s ease;
+    }
+
+    .mindmap-node {
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+    .mindmap-node:hover {
+      filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.85));
+      transform: scale(1.03);
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293d;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+
+    /* ESTILOS DE IMPRESSÃO LIMPOS (PDF) */
+    @media print {
+      body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+      }
+      header, aside, #filterControlsSection, #toastNotification, .no-print, button {
+        display: none !important;
+      }
+      #studyDetailView {
+        display: block !important;
+        border: none !important;
+        padding: 0 !important;
+        background: transparent !important;
+        color: #000000 !important;
+      }
+      #studyDetailView * {
+        color: #000000 !important;
+        background-color: transparent !important;
+        border-color: #cccccc !important;
+      }
+      .scroll-target {
+        page-break-inside: avoid;
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 1rem;
+      }
+      #mindMapSvg {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-[#05070b] text-slate-200 antialiased selection:bg-purple-600 selection:text-white transition-colors duration-200">
+
+  <!-- NOTIFICAÇÃO TOAST FLUTUANTE -->
+  <div id="toastNotification" class="fixed bottom-5 right-5 z-50 bg-[#0e1422] border border-purple-500/50 text-white px-4 py-2.5 rounded-xl shadow-2xl flex items-center gap-2.5 text-xs transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none no-print">
+    <i class="fa-solid fa-circle-check text-purple-400" id="toastIcon"></i>
+    <span id="toastMessage">Assunto salvo com sucesso!</span>
+  </div>
+
+  <!-- AVISO PEDAGÓGICO OBRIGATÓRIO -->
+  <aside class="bg-[#0b101c] border-b border-slate-800 text-xs px-4 py-2 text-slate-300 flex items-center justify-between z-50 flex-shrink-0 no-print">
+    <div class="w-full max-w-[1720px] mx-auto flex items-center justify-between gap-3">
+      <div class="flex items-center gap-2">
+        <span class="inline-flex items-center bg-amber-500/10 text-amber-300 px-2 py-0.5 rounded text-[10px] font-bold border border-amber-500/30">
+          <i class="fa-solid fa-graduation-cap mr-1.5"></i> <span>ENCICLOPÉDIA CURRICULAR COMPLETA</span>
+        </span>
+        <p class="leading-tight text-[11px] sm:text-[12px] text-slate-300">
+          Cobertura profunda da BNCC Fundamental (6º ao 9º), Ensino Médio Completo (1º ao 3º) e Ferramentas de Download Direto em PDF e Markdown.
+        </p>
+      </div>
+      <button onclick="this.parentElement.parentElement.style.display='none'" class="text-slate-500 hover:text-white text-xs px-2 py-0.5 rounded bg-black/40 hover:bg-black/70">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+  </aside>
+
+  <!-- CABEÇALHO SUPERIOR -->
+  <header class="sticky top-0 z-40 bg-[#080c14]/95 backdrop-blur-md border-b border-slate-800/80 flex-shrink-0 no-print">
+    <div class="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      
+      <!-- Logo + Título -->
+      <div class="flex items-center gap-3">
+        <button id="mobileMenuBtn" class="lg:hidden text-slate-400 hover:text-white p-2 rounded-lg bg-[#0e1422] border border-slate-800">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <a href="#" onclick="switchMainView('catalog')" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 via-purple-600 to-red-500 p-[1.5px] shadow-lg shadow-purple-950/40">
+            <div class="w-full h-full bg-[#080c14] rounded-[10px] flex items-center justify-center group-hover:bg-transparent transition">
+              <i class="fa-solid fa-brain text-purple-400 text-base group-hover:text-white"></i>
+            </div>
+          </div>
+          <div>
+            <div class="font-heading font-extrabold text-lg tracking-tight text-white flex items-center gap-1.5">
+              <span>Guide</span><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-red-400">MemorizeAi</span>
+              <span class="text-[9px] px-1.5 py-0.2 rounded bg-purple-900/40 text-purple-300 border border-purple-700/50 uppercase font-mono">ED. AVANÇADA</span>
+            </div>
+            <p class="text-[10px] text-slate-400 leading-none">Matérias Aprofundadas, Teoria Completa & Apostilas</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Barra de Pesquisa Global -->
+      <div class="hidden md:flex flex-1 max-w-xl mx-4">
+        <div class="relative w-full">
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
+          <input 
+            type="text" 
+            id="globalSearch" 
+            placeholder="Pesquise: Termodinâmica, Orações Subordinadas, Revolução Francesa, Bhaskara, Citologia..." 
+            oninput="handleSearch(this.value)"
+            class="w-full bg-[#0e1422] text-xs text-slate-200 pl-9 pr-8 py-2 rounded-lg border border-slate-800 focus:outline-none focus:border-purple-500 transition"
+          >
+          <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 text-xs">
+            <i class="fa-solid fa-circle-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Menus do Topo -->
+      <div class="flex items-center gap-2">
+        <nav class="hidden sm:flex items-center gap-2 text-xs font-medium">
+          <button onclick="showSectionTab('materias')" class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-[#0e1422] border border-transparent hover:border-slate-800 flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-layer-group text-blue-400 text-xs"></i> <span>Grade de Matérias</span>
+          </button>
+          <button onclick="openSavedTopicsView()" class="px-3 py-1.5 rounded-lg text-amber-300 hover:text-amber-200 bg-amber-500/10 border border-amber-500/20 hover:bg-amber-500/20 flex items-center gap-1.5 transition font-semibold">
+            <i class="fa-solid fa-bookmark text-amber-400 text-xs"></i> <span>Salvos</span>
+            <span id="headerSavedCount" class="text-[10px] bg-amber-500/30 px-1.5 py-0.2 rounded-full">0</span>
+          </button>
+          <button onclick="openEnemHub('redacao')" class="px-3 py-1.5 rounded-lg text-purple-300 hover:text-purple-200 bg-purple-500/10 border border-purple-500/20 hover:bg-purple-500/20 flex items-center gap-1.5 transition font-semibold">
+            <i class="fa-solid fa-pen-fancy text-purple-400 text-xs"></i> <span>Redação 1000</span>
+          </button>
+          <button onclick="openEnemHub('visao-geral')" class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-[#0e1422] border border-transparent hover:border-slate-800 flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-bullseye text-amber-400 text-xs"></i> <span>Guia ENEM</span>
+          </button>
+        </nav>
+
+        <button onclick="toggleThemeQuick()" id="quickThemeBtn" title="Alternar Modo Claro/Escuro" class="ml-1 p-2 rounded-lg text-slate-300 hover:text-white bg-[#0e1422] border border-slate-800 text-xs transition">
+          <i class="fa-solid fa-moon text-amber-400" id="quickThemeIcon"></i>
+        </button>
+
+        <div class="ml-1 pl-2 border-l border-slate-800 flex items-center gap-1">
+          <button onclick="setLanguage('pt')" id="btn-lang-pt" class="px-2 py-1 rounded text-xs font-semibold bg-purple-600/30 text-purple-300 border border-purple-500/40">PT</button>
+          <button onclick="setLanguage('en')" id="btn-lang-en" class="px-2 py-1 rounded text-xs font-semibold text-slate-400 hover:text-white hover:bg-[#0e1422]">EN</button>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- CORPO PRINCIPAL COM SIDEBAR FIXA -->
+  <div class="flex-1 w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-8 py-5 flex gap-6 items-start">
+
+    <!-- BARRA LATERAL FIXA -->
+    <aside id="sidebarMenu" class="w-64 flex-shrink-0 hidden lg:flex flex-col sticky top-20 h-[calc(100vh-6rem)] pb-2 z-30 no-print">
+      
+      <div class="flex-1 flex flex-col gap-2 overflow-y-auto pr-1">
+        
+        <div class="bg-[#0e1422] border border-slate-800/80 rounded-xl p-3 text-center flex-shrink-0">
+          <h3 class="font-heading font-bold text-sm text-white">Guide MemorizeAi</h3>
+          <p class="text-[11px] text-slate-400">Currículo Estruturado BNCC & ENEM</p>
+        </div>
+
+        <span class="text-[10px] font-semibold tracking-wider text-slate-400 uppercase px-1 mt-1">Navegação & Níveis</span>
+
+        <!-- ABA DE CONTEÚDOS SALVOS -->
+        <button onclick="openSavedTopicsView()" id="nav-btn-salvos" class="w-full text-left px-3 py-2.5 rounded-lg flex items-center justify-between group bg-[#0e1422] border border-amber-500/30 hover:border-amber-400 transition">
+          <div class="flex items-center gap-2.5">
+            <div class="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center text-xs border border-amber-500/20">
+              <i class="fa-solid fa-bookmark"></i>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-amber-300 group-hover:text-white transition">Conteúdos Salvos</div>
+              <div class="text-[10px] text-slate-400">Revisão e Apostila Personalizada</div>
+            </div>
+          </div>
+          <span id="sidebarSavedBadge" class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">0</span>
+        </button>
+
+        <!-- SEÇÃO ESPECIAL ENEM -->
+        <button onclick="openEnemHub('visao-geral')" id="nav-btn-enem" class="w-full text-left px-3 py-2.5 rounded-lg flex items-center justify-between group bg-gradient-to-r from-amber-950/40 to-red-950/20 border border-amber-600/30 hover:border-amber-500 transition">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center text-xs border border-amber-500/40">
+              <i class="fa-solid fa-bullseye"></i>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-amber-300 group-hover:text-white transition">Guia ENEM Completo</div>
+              <div class="text-[10px] text-slate-400">Estratégia TRI & Checklist</div>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-[10px] text-amber-500 group-hover:translate-x-0.5 transition"></i>
+        </button>
+
+        <!-- REDAÇÃO NOTA 1000 -->
+        <button onclick="openEnemHub('redacao')" id="nav-btn-redacao" class="w-full text-left px-3 py-2.5 rounded-lg flex items-center justify-between group bg-gradient-to-r from-purple-950/40 to-blue-950/20 border border-purple-600/30 hover:border-purple-500 transition">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center text-xs border border-purple-500/40">
+              <i class="fa-solid fa-pen-nib"></i>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-purple-300 group-hover:text-white transition">Redação Nota 1000</div>
+              <div class="text-[10px] text-slate-400">Modelos Prontos & Competência 1</div>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-[10px] text-purple-500 group-hover:translate-x-0.5 transition"></i>
+        </button>
+
+        <!-- Ensino Fundamental (6º AO 9º ANO) -->
+        <button onclick="filterByLevel('fundamental')" id="nav-btn-fundamental" class="w-full text-left px-3 py-2 rounded-lg flex items-center justify-between group bg-[#0e1422] border border-slate-800 hover:border-slate-700 transition btn-gradient-active">
+          <div class="flex items-center gap-2.5">
+            <div class="w-7 h-7 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center text-xs">
+              <i class="fa-solid fa-school"></i>
+            </div>
+            <div>
+              <div class="text-xs font-semibold text-white group-hover:text-blue-300 transition">Ensino Fundamental</div>
+              <div class="text-[10px] text-slate-400">6º ao 9º Ano (BNCC Aprofundada)</div>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-[10px] text-slate-600 group-hover:text-blue-400 transition"></i>
+        </button>
+
+        <!-- Ensino Médio (1º AO 3º ANO) -->
+        <button onclick="filterByLevel('medio')" id="nav-btn-medio" class="w-full text-left px-3 py-2 rounded-lg flex items-center justify-between group bg-[#0e1422] border border-slate-800 hover:border-slate-700 transition">
+          <div class="flex items-center gap-2.5">
+            <div class="w-7 h-7 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center text-xs">
+              <i class="fa-solid fa-book-open-reader"></i>
+            </div>
+            <div>
+              <div class="text-xs font-semibold text-white group-hover:text-purple-300 transition">Ensino Médio</div>
+              <div class="text-[10px] text-slate-400">1º ao 3º Ano • 9 Disciplinas</div>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-[10px] text-slate-600 group-hover:text-purple-400 transition"></i>
+        </button>
+
+        <!-- Faculdade -->
+        <button onclick="filterByLevel('faculdade')" id="nav-btn-faculdade" class="w-full text-left px-3 py-2 rounded-lg flex items-center justify-between group bg-[#0e1422] border border-slate-800 hover:border-slate-700 transition">
+          <div class="flex items-center gap-2.5">
+            <div class="w-7 h-7 rounded-lg bg-red-500/10 text-red-400 flex items-center justify-center text-xs">
+              <i class="fa-solid fa-building-columns"></i>
+            </div>
+            <div>
+              <div class="text-xs font-semibold text-white group-hover:text-red-300 transition">Faculdade & Superior</div>
+              <div class="text-[10px] text-slate-400">Direito, Cálculo, Algoritmos</div>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-[10px] text-slate-600 group-hover:text-red-400 transition"></i>
+        </button>
+
+        <!-- Cursos & Idiomas -->
+        <button onclick="filterByLevel('cursos')" id="nav-btn-cursos" class="w-full text-left px-3 py-2 rounded-lg flex items-center justify-between group bg-[#0e1422] border border-slate-800 hover:border-slate-700 transition">
+          <div class="flex items-center gap-2.5">
+            <div class="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xs">
+              <i class="fa-solid fa-sliders"></i>
+            </div>
+            <div>
+              <div class="text-xs font-semibold text-white group-hover:text-emerald-300 transition">Idiomas & Cursos</div>
+              <div class="text-[10px] text-slate-400">Inglês Avançado & Habilidades</div>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-[10px] text-slate-600 group-hover:text-emerald-400 transition"></i>
+        </button>
+
+      </div>
+
+      <div class="mt-auto pt-3 border-t border-slate-800/80 flex flex-col gap-1.5 flex-shrink-0 bg-transparent">
+        <button onclick="showSectionTab('dicas')" class="w-full text-left px-3 py-2 rounded-lg flex items-center gap-2.5 text-xs text-slate-300 hover:text-white bg-[#0e1422] border border-slate-800/70 hover:border-slate-700 transition">
+          <i class="fa-solid fa-feather text-amber-400"></i>
+          <span>Metodologias de Estudo</span>
+        </button>
+        <button onclick="openSettingsModal()" class="w-full text-left px-3 py-2 rounded-lg flex items-center gap-2.5 text-xs text-slate-300 hover:text-white bg-[#0e1422] border border-slate-800/70 hover:border-slate-700 transition">
+          <i class="fa-solid fa-gear text-slate-400"></i>
+          <span>Configurações & Tema</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- ÁREA CENTRAL DE CONTEÚDO -->
+    <main class="flex-1 min-w-0 flex flex-col gap-4">
+
+      <!-- PAINEL DE FILTROS SUPERIORES -->
+      <section id="filterControlsSection" class="bg-[#0e1422] p-3.5 rounded-xl border border-slate-800 flex flex-col gap-3 no-print">
+        
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/70 pb-2.5">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="text-xs text-slate-400">Visualizando:</span>
+            <span id="currentLevelBadge" class="text-xs px-2.5 py-0.5 rounded-md font-semibold bg-purple-950/60 text-purple-300 border border-purple-800/50">
+              Ensino Fundamental
+            </span>
+            <span id="topicCountBadge" class="text-[11px] text-slate-400 font-mono">
+              (Carregando catálogo...)
+            </span>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button onclick="switchMainView('catalog')" id="btnViewCatalog" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-white flex items-center gap-1.5 border border-slate-700">
+              <i class="fa-solid fa-table-cells-large"></i> <span>Grade de Matérias</span>
+            </button>
+            <button onclick="switchMainView('study')" id="btnViewStudy" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#080c14] text-slate-400 hover:text-white flex items-center gap-1.5 border border-slate-800">
+              <i class="fa-solid fa-book-open"></i> <span>Leitura Profunda</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3 text-xs">
+          <div class="flex items-center gap-1.5">
+            <span class="text-slate-400" id="filterLabelGrade">Série/Ano:</span>
+            <select id="selectGradeYear" onchange="applyFilters()" class="bg-[#080c14] text-slate-200 border border-slate-800 rounded-lg px-2.5 py-1 text-xs focus:outline-none focus:border-purple-500">
+            </select>
+          </div>
+
+          <div class="flex items-center gap-1.5">
+            <span class="text-slate-400" id="filterLabelSubject">Disciplina:</span>
+            <select id="selectSubject" onchange="applyFilters()" class="bg-[#080c14] text-slate-200 border border-slate-800 rounded-lg px-2.5 py-1 text-xs focus:outline-none focus:border-purple-500">
+            </select>
+          </div>
+
+          <div class="flex items-center gap-1.5" id="bimesterFilterWrapper">
+            <span class="text-slate-400">Bimestre:</span>
+            <select id="selectBimester" onchange="applyFilters()" class="bg-[#080c14] text-slate-200 border border-slate-800 rounded-lg px-2.5 py-1 text-xs focus:outline-none focus:border-purple-500">
+              <option value="todos">Todos os Bimestres</option>
+              <option value="1º Bimestre">1º Bimestre / Semestre</option>
+              <option value="2º Bimestre">2º Bimestre / Semestre</option>
+              <option value="3º Bimestre">3º Bimestre / Semestre</option>
+              <option value="4º Bimestre">4º Bimestre / Semestre</option>
+            </select>
+          </div>
+
+          <button onclick="resetFilters()" class="text-slate-500 hover:text-slate-300 text-xs ml-auto flex items-center gap-1">
+            <i class="fa-solid fa-rotate-left"></i> Limpar filtros
+          </button>
+        </div>
+
+      </section>
+
+      <!-- VISTA 1: GRADE DE CARDS -->
+      <div id="catalogView" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      </div>
+
+      <!-- VISTA 2: TELA COMPLETA E PROFUNDA DO ASSUNTO (COM DOWNLOAD DIRETO) -->
+      <article id="studyDetailView" class="hidden bg-[#0e1422] border border-slate-800 rounded-2xl p-5 sm:p-7 flex flex-col gap-6 shadow-xl relative">
+        
+        <!-- BARRA SUPERIOR DE AÇÕES (VOLTAR, SALVAR, BAIXAR PDF, BAIXAR MD) -->
+        <div class="flex items-center justify-between border-b border-slate-800/80 pb-3 flex-wrap gap-2.5 no-print">
+          <button onclick="switchMainView('catalog')" class="text-xs text-slate-400 hover:text-white flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#080c14] border border-slate-800 transition">
+            <i class="fa-solid fa-arrow-left"></i> <span>Voltar para a Grade</span>
+          </button>
+          
+          <div class="flex items-center gap-2 flex-wrap">
+            <!-- BOTÕES DE DOWNLOAD DIRETO -->
+            <button onclick="downloadCurrentTopicMarkdown()" title="Baixar resumo completo em arquivo .MD" class="px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 border border-emerald-500/30 bg-emerald-500/10 text-emerald-300 hover:bg-emerald-500/20 transition">
+              <i class="fa-solid fa-file-arrow-down"></i>
+              <span>Baixar Resumo (.MD)</span>
+            </button>
+
+            <button onclick="printCurrentTopic()" title="Imprimir ou Salvar diretamente como PDF" class="px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 border border-blue-500/30 bg-blue-500/10 text-blue-300 hover:bg-blue-500/20 transition">
+              <i class="fa-solid fa-print"></i>
+              <span>Salvar em PDF / Imprimir</span>
+            </button>
+
+            <button id="btnSaveCurrentTopic" onclick="toggleSaveCurrentTopic()" class="px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 border border-amber-500/30 bg-amber-500/10 text-amber-300 hover:bg-amber-500/20 transition">
+              <i class="fa-regular fa-bookmark" id="btnSaveCurrentIcon"></i>
+              <span id="btnSaveCurrentText">Salvar para Depois</span>
+            </button>
+
+            <span id="topicGradeTag" class="text-xs px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 border border-slate-700">6º Ano</span>
+            <span id="topicBimesterTag" class="text-xs px-2.5 py-1 rounded-md bg-blue-900/40 text-blue-300 border border-blue-800/50">1º Bimestre</span>
+            <span id="topicSubjectTag" class="text-xs px-2.5 py-1 rounded-md bg-purple-900/40 text-purple-300 border border-purple-800/50">Português</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center gap-2 text-xs text-purple-400 font-mono mb-1" id="topicBreadcrumb">
+            Ensino Fundamental > 6º Ano > 1º Bimestre
+          </div>
+          <h1 id="topicTitle" class="text-2xl sm:text-3xl font-heading font-extrabold text-white tracking-tight leading-tight">
+            Título do Assunto
+          </h1>
+          <p id="topicSubtitle" class="text-xs sm:text-sm text-slate-400 mt-1 leading-relaxed">
+            Descrição pedagógica aprofundada e contextualizada do módulo.
+          </p>
+        </div>
+
+        <div class="bg-purple-950/20 border border-purple-800/30 rounded-lg p-3 text-xs text-purple-200 flex items-center gap-2.5 no-print">
+          <i class="fa-solid fa-circle-question text-purple-400 text-base flex-shrink-0"></i>
+          <span>
+            <strong>Glossário Acadêmico Interativo:</strong> Clique nas palavras pontilhadas para abrir a janela com etimologia, classe gramatical e aplicação em provas.
+          </span>
+        </div>
+
+        <!-- NÍVEIS DE PROFUNDIDADE -->
+        <div class="flex flex-wrap items-center justify-between gap-3 p-2 bg-[#080c14] rounded-xl border border-slate-800 no-print">
+          <span class="text-xs font-semibold text-slate-400 px-2">Modo de Leitura:</span>
+          <div class="flex items-center gap-1.5">
+            <button onclick="setDepthMode('revisao')" id="btn-mode-revisao" class="px-3.5 py-1.5 rounded-lg text-xs font-medium transition text-slate-400 hover:text-white">
+              <i class="fa-solid fa-bolt-lightning text-amber-400 mr-1.5"></i> <span>Revisão Rápida</span>
+            </button>
+            <button onclick="setDepthMode('resumida')" id="btn-mode-resumida" class="px-3.5 py-1.5 rounded-lg text-xs font-medium transition text-slate-400 hover:text-white">
+              <i class="fa-solid fa-file-lines text-blue-400 mr-1.5"></i> <span>Síntese</span>
+            </button>
+            <button onclick="setDepthMode('detalhada')" id="btn-mode-detalhada" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-purple-600/30 text-purple-300 border border-purple-500/40">
+              <i class="fa-solid fa-book-open-reader text-purple-400 mr-1.5"></i> <span>Conteúdo Aprofundado Completo</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- QUADRO DE SOFTWARES ALTERNATIVOS -->
+        <div id="softwareAlternativesBox" class="hidden bg-[#080c14] border border-blue-900/40 rounded-xl p-4 no-print">
+          <div class="flex items-center gap-2 mb-2">
+            <i class="fa-solid fa-cubes text-blue-400 text-sm"></i>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-blue-300">Softwares & Ambientes Virtuais de Simulação</h4>
+          </div>
+          <div id="softwareBadgesContainer" class="flex flex-wrap gap-2 text-xs">
+          </div>
+        </div>
+
+        <!-- MAPA MENTAL INTERATIVO (CONECTADO COM ROLAGEM) -->
+        <div class="bg-[#080c14] border border-slate-800 rounded-xl p-4 flex flex-col gap-2 no-print">
+          <div class="flex items-center justify-between flex-wrap gap-2 border-b border-slate-800/80 pb-2">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-diagram-project text-purple-400"></i>
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-200">Mapa Mental Navegável</h3>
+            </div>
+            <span class="text-[11px] text-amber-400 font-medium">
+              <i class="fa-solid fa-arrow-pointer mr-1"></i> Clique em qualquer nó para rolar direto à seção correspondente!
+            </span>
+          </div>
+
+          <div class="overflow-x-auto min-h-[220px] flex items-center justify-center p-2">
+            <svg id="mindMapSvg" class="w-full max-w-2xl h-56" viewBox="0 0 650 230">
+            </svg>
+          </div>
+        </div>
+
+        <!-- CONTEÚDO PRINCIPAL (15 A 50 LINHAS REAIS POR MATÉRIA) -->
+        <div id="topicMainContent" class="text-slate-300 text-xs sm:text-sm leading-relaxed space-y-4">
+        </div>
+
+        <!-- MACETES & MNEMÔNICOS -->
+        <div id="topicMacetesBox" class="bg-gradient-to-r from-amber-950/30 via-purple-950/20 to-blue-950/30 border border-amber-500/40 rounded-xl p-4 sm:p-5 flex flex-col gap-2.5 transition-all duration-300">
+          <div class="flex items-center gap-2 text-amber-300 text-xs sm:text-sm font-bold uppercase tracking-wider">
+            <i class="fa-solid fa-bolt-lightning text-amber-400"></i>
+            <span>⚡ Macetes Mnemônicos & Atalhos de Fixação Rápida</span>
+          </div>
+          <div id="topicMacetesContent" class="text-xs sm:text-sm text-slate-200 leading-relaxed space-y-2">
+          </div>
+        </div>
+
+        <!-- GRÁFICO E RETENÇÃO -->
+        <div class="pt-4 border-t border-slate-800 no-print">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-200 flex items-center gap-2">
+              <i class="fa-solid fa-chart-simple text-blue-400"></i>
+              <span>Composição Conceitual & Incidência em Provas</span>
+            </h3>
+            <span class="text-[10px] text-slate-500 font-mono" id="chartMetricLabel">Base BNCC / ENEM</span>
+          </div>
+
+          <div class="bg-[#080c14] border border-slate-800 rounded-xl p-4">
+            <div id="chartVisualization" class="flex flex-col gap-3">
+            </div>
+          </div>
+        </div>
+
+        <!-- FONTES DE PESQUISA -->
+        <div class="bg-[#080c14] p-4 rounded-xl border border-slate-800 flex flex-col gap-2">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2 text-xs font-bold text-slate-300 uppercase tracking-wide">
+              <i class="fa-solid fa-book-bookmark text-red-400"></i>
+              <span>Referências Acadêmicas & Bibliografia Oficial</span>
+            </div>
+            <span class="text-[10px] text-slate-500 font-mono">Padrão ABNT / MEC</span>
+          </div>
+          
+          <ul id="topicSourcesList" class="text-xs text-slate-400 space-y-1.5 list-disc pl-5">
+          </ul>
+        </div>
+
+      </article>
+
+      <!-- VISTA 3: CENTRAL DO ENEM E REDAÇÃO NOTA 1000 -->
+      <section id="enemHubView" class="hidden flex flex-col gap-5">
+        
+        <div class="bg-gradient-to-r from-amber-950/40 via-purple-950/30 to-blue-950/40 border border-amber-500/30 rounded-2xl p-5 sm:p-7 flex flex-col gap-2">
+          <div class="flex items-center gap-2 text-amber-400 text-xs font-bold uppercase tracking-wider">
+            <i class="fa-solid fa-bullseye"></i>
+            <span>Exame Nacional do Ensino Médio • Central Estratégica Completa</span>
+          </div>
+          <h1 class="text-2xl sm:text-3xl font-heading font-extrabold text-white">
+            Portal Estratégico do ENEM: TRI, Redação Nota 1000 & Domínio Vocabular
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-4xl">
+            Modelos prontos validados pelo Inep, micro-regras gramaticais da Competência 1, palavras sofisticadas e desmistificação matemática da Teoria de Resposta ao Item.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2 bg-[#0e1422] p-2 rounded-xl border border-slate-800 text-xs font-medium no-print">
+          <button onclick="switchEnemSubTab('redacao-modelos')" id="btn-enem-tab-modelos" class="px-3.5 py-2 rounded-lg bg-purple-600/30 text-purple-300 border border-purple-500/40 flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-file-pen text-purple-400"></i> <span>Modelos de Redação Coringa</span>
+          </button>
+          <button onclick="switchEnemSubTab('gramatica-dicas')" id="btn-enem-tab-gramatica" class="px-3.5 py-2 rounded-lg text-slate-400 hover:text-white border border-transparent hover:border-slate-800 flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-spell-check text-blue-400"></i> <span>Blindagem Gramatical (Comp. 1)</span>
+          </button>
+          <button onclick="switchEnemSubTab('vocabulario-elite')" id="btn-enem-tab-vocab" class="px-3.5 py-2 rounded-lg text-slate-400 hover:text-white border border-transparent hover:border-slate-800 flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-gem text-emerald-400"></i> <span>Palavras de Elite & Conectivos</span>
+          </button>
+          <button onclick="switchEnemSubTab('tri-estrategia')" id="btn-enem-tab-tri" class="px-3.5 py-2 rounded-lg text-slate-400 hover:text-white border border-transparent hover:border-slate-800 flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-chart-line text-amber-400"></i> <span>TRI & Curva Logística</span>
+          </button>
+          <button onclick="switchEnemSubTab('checklist-areas')" id="btn-enem-tab-checklist" class="px-3.5 py-2 rounded-lg text-slate-400 hover:text-white border border-transparent hover:border-slate-800 flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-list-check text-red-400"></i> <span>Checklist das 4 Áreas</span>
+          </button>
+        </div>
+
+        <!-- SUB-VISTA MODELOS DE REDAÇÃO -->
+        <div id="enemSubView-modelos" class="space-y-4">
+          <div class="bg-[#0e1422] border border-slate-800 rounded-2xl p-5 sm:p-6 space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-lg border border-purple-500/20">
+                <i class="fa-solid fa-scroll"></i>
+              </div>
+              <div>
+                <h3 class="text-base sm:text-lg font-heading font-bold text-white">Modelo Estrutural Universal (Adaptável a Temas Sociais, Científicos e Culturais)</h3>
+                <p class="text-xs text-slate-400">Estrutura de 4 parágrafos com conectivos intra e interparágrafos, repertórios legítimos e proposta com os 5 elementos formais.</p>
+              </div>
+            </div>
+
+            <div class="bg-[#080c14] border border-purple-900/40 rounded-xl p-4 sm:p-5 space-y-3">
+              <div class="flex items-center justify-between flex-wrap gap-2">
+                <span class="text-xs font-bold text-purple-300 uppercase tracking-wider bg-purple-950/60 px-2.5 py-1 rounded border border-purple-800/40">
+                  Modelo Universal: Inércia Governamental + Apatia Social Coletiva
+                </span>
+                <span class="text-[11px] text-slate-500 font-mono">CF/88 • Gilberto Dimenstein • Zygmunt Bauman</span>
+              </div>
+
+              <div class="space-y-3 text-xs text-slate-300 leading-relaxed font-sans">
+                <div class="p-3.5 bg-[#0e1422] rounded-lg border border-slate-800">
+                  <strong class="text-amber-400 block mb-1">1. Introdução (Contextualização + Problematização + Dupla Tese):</strong>
+                  <p>
+                    A Carta Magna de 1988 — documento jurídico mais proeminente do Estado brasileiro — assegura expressamente a dignidade humana, a integridade comunitária e o livre exercício da cidadania como garantias precípuas de todos os indivíduos. Todavia, ao examinar a realidade concernente a <span class="text-purple-300 font-bold">[TEMA PROPOSTO]</span>, percebe-se um abismo intransponível entre o arcabouço normativo e a vivência cotidiana. Desse modo, torna-se fulcral analisar os fatores determinantes desse cenário hostil: de um lado, a inoperância do poder público na efetivação de políticas contínuas; de outro, a apatia da sociedade civil em desnaturalizar a marginalização desse impasse.
+                  </p>
+                </div>
+
+                <div class="p-3.5 bg-[#0e1422] rounded-lg border border-slate-800">
+                  <strong class="text-blue-400 block mb-1">2. Desenvolvimento 1 (Argumento Institucional • Falha de Políticas Públicas):</strong>
+                  <p>
+                    Em primeira análise, cabe pontuar que a negligência governamental atua como propulsora da problemática. Conforme teoriza o jornalista Gilberto Dimenstein na célebre obra "O Cidadão de Papel", a legislação nacional é rica em preceitos humanitários, mas falha gravemente em transpô-los do plano formal para o real, transformando milhões de sujeitos em cidadãos fictícios. Analogamente, a carência de investimentos estatais robustos no combate a <span class="text-purple-300 font-bold">[EIXO ESPECÍFICO DO TEMA]</span> corrobora essa teoria, permitindo que a escassez de fiscalização e de infraestrutura perpetue uma conjuntura excludente que priva parcelas expressivas da população de seus direitos constitucionais basilares.
+                  </p>
+                </div>
+
+                <div class="p-3.5 bg-[#0e1422] rounded-lg border border-slate-800">
+                  <strong class="text-emerald-400 block mb-1">3. Desenvolvimento 2 (Argumento Comportamental • Indiferença e Liquidez Social):</strong>
+                  <p>
+                    Ademais, é imperioso ressaltar a passividade da coletividade diante dessa conjuntura como fator cronificador do revés. Sob a perspectiva do filósofo polonês Zygmunt Bauman em "Modernidade Líquida", o individualismo hipertrofiado das sociedades hodiernas fomenta uma apatia generalizada perante as dores do outro, fragilizando o sentimento de responsabilidade cívica e solidariedade orgânica. Nesse sentido, enquanto a população silenciar perante a gravidade de <span class="text-purple-300 font-bold">[CONSEQUÊNCIA GRAVE DO TEMA]</span> e considerá-la um aspecto corriqueiro do cotidiano, a invisibilidade dos afetados permanecerá intocada, retardando o progresso civilizatório do país.
+                  </p>
+                </div>
+
+                <div class="p-3.5 bg-[#0e1422] rounded-lg border border-slate-800">
+                  <strong class="text-red-400 block mb-1">4. Conclusão (Proposta Completa com os 5 Elementos Obrigatórios):</strong>
+                  <p>
+                    Infere-se, portanto, a urgência de medidas enérgicas capazes de mitigar tal disparidade. Para isso, cabe ao <span class="text-amber-300 font-bold">[AGENTE: Ministério competente / Secretarias]</span>, em regime de coparticipação com a sociedade civil organizada, implementar programas perenes com destinação orçamentária compulsória <span class="text-blue-300 font-bold">[AÇÃO]</span>, mediante caravanas públicas e plataformas digitais acessíveis <span class="text-emerald-300 font-bold">[MEIO/MODO]</span>. Essa medida deverá ser detalhada e acompanhada por auditorias populares independentes com relatórios semestrais divulgados na imprensa <span class="text-red-300 font-bold">[DETALHAMENTO DO MEIO]</span>, a fim de extirpar a vulnerabilidade histórica e assegurar o pleno gozo da cidadania ativa <span class="text-purple-300 font-bold">[EFEITO/FINALIDADE]</span>.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="enemSubView-gramatica" class="hidden space-y-4">
+          <div class="bg-[#0e1422] border border-slate-800 rounded-2xl p-5 sm:p-6 space-y-4">
+            <h3 class="text-base sm:text-lg font-heading font-bold text-white">Blindagem Gramatical da Competência 1</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+              <div class="bg-[#080c14] border border-slate-800 rounded-xl p-4 space-y-2">
+                <h4 class="font-bold text-red-400">1. Regras Decisivas de Crase</h4>
+                <p class="text-slate-300">• <strong>Antes de verbo:</strong> Jamais use crase ("Começou a produzir").</p>
+                <p class="text-slate-300">• <strong>Palavras masculinas:</strong> Proibida ("A prazo", "a pé").</p>
+                <p class="text-slate-300">• <strong>Locuções femininas:</strong> Obrigatória ("À medida que", "à luz de").</p>
+              </div>
+              <div class="bg-[#080c14] border border-slate-800 rounded-xl p-4 space-y-2">
+                <h4 class="font-bold text-amber-400">2. Paralelismo Sintático Estrito</h4>
+                <p class="text-slate-300">Ao coordenar orações, mantenha a mesma estrutura gramatical (verbo com verbo, substantivo com substantivo).</p>
+                <div class="p-2 bg-[#0e1422] rounded border border-emerald-900/40 text-[11px] text-emerald-300">
+                  ✔️ "Visa a conscientizar a população e a fiscalizar as instituições."
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="enemSubView-vocab" class="hidden space-y-4">
+          <div class="bg-[#0e1422] border border-slate-800 rounded-2xl p-5 sm:p-6 space-y-4">
+            <h3 class="text-base sm:text-lg font-heading font-bold text-white">Vocabulário de Alto Nível & Conectivos</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-xs">
+              <div class="p-3 rounded-lg bg-[#080c14] border border-slate-800">
+                <strong class="text-purple-300 block mb-0.5">Precípuo</strong>
+                <p class="text-slate-400">Essencial, indispensável, supremo.</p>
+              </div>
+              <div class="p-3 rounded-lg bg-[#080c14] border border-slate-800">
+                <strong class="text-purple-300 block mb-0.5">Fulcral</strong>
+                <p class="text-slate-400">Decisivo, medular, eixo de sustentação.</p>
+              </div>
+              <div class="p-3 rounded-lg bg-[#080c14] border border-slate-800">
+                <strong class="text-purple-300 block mb-0.5">Dessarte / Destarte</strong>
+                <p class="text-slate-400">Conclusivo: desta forma, portanto.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="enemSubView-tri" class="hidden space-y-4">
+          <div class="bg-[#0e1422] border border-slate-800 rounded-2xl p-5 sm:p-6 space-y-4">
+            <h3 class="text-base sm:text-lg font-heading font-bold text-white">Como Dominar a Teoria de Resposta ao Item (TRI)</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              A TRI não contabiliza acertos de forma puramente linear. Ela analisa o padrão de coerência do estudante. Se você errar questões fáceis de porcentagem e acertar questões difíceis de logaritmo, o algoritmo atribui o acerto ao chute e reduz severamente a sua nota.
+            </p>
+          </div>
+        </div>
+
+        <div id="enemSubView-checklist" class="hidden space-y-4">
+          <div class="bg-[#0e1422] border border-slate-800 rounded-2xl p-5 sm:p-6 space-y-4">
+            <h3 class="text-base sm:text-lg font-heading font-bold text-white">Checklist de Prioridades por Área</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+              <div class="p-3 rounded-lg bg-[#080c14] border border-slate-800">
+                <strong class="text-purple-400 block mb-1">Matemática:</strong>
+                <p class="text-slate-300">Regra de Três, Porcentagem, Médias/Mediana, Volume de Prismas e Cilindros, Funções.</p>
+              </div>
+              <div class="p-3 rounded-lg bg-[#080c14] border border-slate-800">
+                <strong class="text-emerald-400 block mb-1">Ciências da Natureza:</strong>
+                <p class="text-slate-300">Ecologia (Ciclos e Poluição), Circuitos Elétricos e Consumo ($kWh$), Estequiometria, Ondas.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- VISTA 4: DICAS CIENTÍFICAS DE ESTUDO -->
+      <section id="studyTipsView" class="hidden flex flex-col gap-4">
+        <div class="bg-[#0e1422] border border-slate-800 p-5 rounded-2xl">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-lg border border-amber-500/20">
+              <i class="fa-solid fa-lightbulb"></i>
+            </div>
+            <div>
+              <h2 class="text-lg font-heading font-bold text-white">Neurociência Aplicada aos Estudos</h2>
+              <p class="text-xs text-slate-400">Protocolos comprovados para consolidar a memória de longo prazo.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-[#080c14] border border-slate-800 rounded-xl p-4 flex flex-col gap-2">
+            <div class="flex items-center gap-2 text-amber-400 text-xs font-bold">
+              <i class="fa-solid fa-repeat"></i>
+              <span>1. Recuperação Ativa (Active Recall)</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Não se limite a reler ou grifar. Após ler a matéria detalhada, feche os olhos ou pegue uma folha em branco e rascunhe as fórmulas, definições e macetes sem consultar. O esforço neural de puxar a memória fortalece as sinapses.
+            </p>
+          </div>
+
+          <div class="bg-[#080c14] border border-slate-800 rounded-xl p-4 flex flex-col gap-2">
+            <div class="flex items-center gap-2 text-purple-400 text-xs font-bold">
+              <i class="fa-solid fa-shuffle"></i>
+              <span>2. Prática Intercalada</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Alterne blocos de 50 minutos entre disciplinas distintas (Ex: Física seguida de História). O cérebro consolida melhor os conhecimentos ao ser forçado a alternar entre diferentes circuitos de raciocínio.
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- MODAL DO DICIONÁRIO ACADÊMICO -->
+  <div id="vocabModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 no-print">
+    <div class="bg-[#0e1422] border border-slate-700 max-w-md w-full rounded-2xl p-5 shadow-2xl relative">
+      <button onclick="closeVocabModal()" class="absolute right-4 top-4 text-slate-400 hover:text-white">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-10 h-10 rounded-xl bg-purple-600/20 text-purple-400 flex items-center justify-center border border-purple-500/30">
+          <i class="fa-solid fa-spell-check text-lg"></i>
+        </div>
+        <div>
+          <span class="text-[10px] uppercase font-mono tracking-widest text-purple-400">Glossário Acadêmico</span>
+          <h3 id="vocabModalTerm" class="text-lg font-heading font-bold text-white flex items-center gap-2">
+            Termo
+            <button onclick="speakCurrentWord()" title="Ouvir pronúncia" class="text-xs text-slate-400 hover:text-purple-300">
+              <i class="fa-solid fa-volume-high"></i>
+            </button>
+          </h3>
+        </div>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div class="bg-[#080c14] p-2.5 rounded-lg border border-slate-800">
+          <span class="text-slate-400 font-semibold block mb-0.5">Classificação Gramatical & Fonética:</span>
+          <p id="vocabModalGrammar" class="text-slate-300 font-mono italic">substantivo</p>
+        </div>
+
+        <div>
+          <span class="text-slate-400 font-semibold block mb-0.5">Definição Técnica Formal:</span>
+          <p id="vocabModalMeaning" class="text-slate-200 leading-relaxed">Definição.</p>
+        </div>
+
+        <div class="bg-blue-950/20 p-2.5 rounded-lg border border-blue-900/30">
+          <span class="text-blue-300 font-semibold block mb-0.5">Contexto em Avaliações:</span>
+          <p id="vocabModalContext" class="text-slate-300 leading-relaxed">Aplicação.</p>
+        </div>
+      </div>
+
+      <div class="mt-4 pt-3 border-t border-slate-800 flex justify-end">
+        <button onclick="closeVocabModal()" class="px-4 py-1.5 rounded-lg text-xs font-semibold bg-purple-600 hover:bg-purple-500 text-white transition">
+          Entendido
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE CONFIGURAÇÕES -->
+  <div id="settingsModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 no-print">
+    <div class="bg-[#0e1422] border border-slate-700 max-w-md w-full rounded-2xl p-5 shadow-2xl relative">
+      <button onclick="closeSettingsModal()" class="absolute right-4 top-4 text-slate-400 hover:text-white">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-xl bg-slate-800 text-slate-300 flex items-center justify-center border border-slate-700">
+          <i class="fa-solid fa-sliders text-lg"></i>
+        </div>
+        <div>
+          <h3 class="text-lg font-heading font-bold text-white">Configurações & Tema</h3>
+          <p class="text-xs text-slate-400">Aparência e opções do aplicativo</p>
+        </div>
+      </div>
+
+      <div class="space-y-4 text-xs">
+        <div class="bg-[#080c14] p-3.5 rounded-xl border border-slate-800 space-y-2">
+          <label class="block text-slate-200 font-bold mb-1">Tema da Interface:</label>
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="setTheme('dark')" id="themeBtnDark" class="p-2.5 rounded-lg border border-purple-500/50 bg-purple-600/20 text-purple-300 flex items-center justify-center gap-2 font-bold">
+              <i class="fa-solid fa-moon"></i> Modo Escuro
+            </button>
+            <button onclick="setTheme('light')" id="themeBtnLight" class="p-2.5 rounded-lg border border-slate-800 bg-[#0e1422] text-slate-400 hover:text-white flex items-center justify-center gap-2 font-medium">
+              <i class="fa-solid fa-sun"></i> Modo Claro
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Cobertura da BNCC:</label>
+          <div class="p-2 rounded bg-[#080c14] border border-slate-800 flex justify-between items-center text-slate-400">
+            <span>Fundamental (6º ao 9º) + Médio (1º ao 3º)</span>
+            <span class="text-emerald-400 font-bold text-[10px]">100% Coberto</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-5 flex justify-end">
+        <button onclick="closeSettingsModal()" class="px-4 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-white hover:bg-slate-700">
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ==========================================================================
+       1. TEMA & INTERFACE
+       ========================================================================== */
+    let currentTheme = localStorage.getItem('theme') || 'dark';
+
+    function initTheme() {
+      if (currentTheme === 'light') {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+      } else {
+        document.documentElement.classList.remove('light');
+        document.documentElement.classList.add('dark');
+      }
+      updateThemeButtonsUI();
+    }
+
+    function setTheme(theme) {
+      currentTheme = theme;
+      localStorage.setItem('theme', theme);
+      initTheme();
+    }
+
+    function toggleThemeQuick() {
+      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      setTheme(nextTheme);
+    }
+
+    function updateThemeButtonsUI() {
+      const icon = document.getElementById('quickThemeIcon');
+      const btnDark = document.getElementById('themeBtnDark');
+      const btnLight = document.getElementById('themeBtnLight');
+
+      if (currentTheme === 'light') {
+        if (icon) icon.className = "fa-solid fa-sun text-amber-500";
+        if (btnLight) btnLight.className = "p-2.5 rounded-lg border border-purple-500/50 bg-purple-600/20 text-purple-600 font-bold flex items-center justify-center gap-2";
+        if (btnDark) btnDark.className = "p-2.5 rounded-lg border border-slate-300 bg-white text-slate-600 flex items-center justify-center gap-2 font-medium";
+      } else {
+        if (icon) icon.className = "fa-solid fa-moon text-amber-400";
+        if (btnDark) btnDark.className = "p-2.5 rounded-lg border border-purple-500/50 bg-purple-600/20 text-purple-300 font-bold flex items-center justify-center gap-2";
+        if (btnLight) btnLight.className = "p-2.5 rounded-lg border border-slate-800 bg-[#0e1422] text-slate-400 flex items-center justify-center gap-2 font-medium";
+      }
+    }
+
+    /* ==========================================================================
+       2. ARMAZENAMENTO & FAVORITOS
+       ========================================================================== */
+    function getSavedTopics() {
+      try {
+        return JSON.parse(localStorage.getItem('savedTopics') || '[]');
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function isTopicSaved(topicId) {
+      return getSavedTopics().includes(topicId);
+    }
+
+    function toggleSaveTopic(topicId, event) {
+      if (event) event.stopPropagation();
+      let saved = getSavedTopics();
+      let isNowSaved = false;
+
+      if (saved.includes(topicId)) {
+        saved = saved.filter(id => id !== topicId);
+        showToast("Assunto removido dos favoritos.", "info");
+      } else {
+        saved.push(topicId);
+        isNowSaved = true;
+        showToast("Assunto salvo para revisão!", "success");
+      }
+
+      localStorage.setItem('savedTopics', JSON.stringify(saved));
+      updateSavedBadges();
+
+      if (currentSelectedId === topicId) {
+        updateSaveButtonUI(isNowSaved);
+      }
+
+      if (currentLevel === 'salvos') {
+        renderSavedTopicsCatalog();
+      } else {
+        renderCatalog();
+      }
+    }
+
+    function toggleSaveCurrentTopic() {
+      toggleSaveTopic(currentSelectedId);
+    }
+
+    function updateSaveButtonUI(isSaved) {
+      const btnIcon = document.getElementById('btnSaveCurrentIcon');
+      const btnText = document.getElementById('btnSaveCurrentText');
+      if (btnIcon && btnText) {
+        if (isSaved) {
+          btnIcon.className = "fa-solid fa-bookmark text-amber-400";
+          btnText.textContent = "Salvo nos Favoritos";
+        } else {
+          btnIcon.className = "fa-regular fa-bookmark";
+          btnText.textContent = "Salvar para Depois";
+        }
+      }
+    }
+
+    function updateSavedBadges() {
+      const count = getSavedTopics().length;
+      const sidebarBadge = document.getElementById('sidebarSavedBadge');
+      const headerBadge = document.getElementById('headerSavedCount');
+      if (sidebarBadge) sidebarBadge.textContent = count;
+      if (headerBadge) headerBadge.textContent = count;
+    }
+
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toastNotification');
+      const msg = document.getElementById('toastMessage');
+      const icon = document.getElementById('toastIcon');
+      if (!toast) return;
+
+      msg.textContent = message;
+      if (type === 'success') {
+        icon.className = "fa-solid fa-circle-check text-emerald-400";
+        toast.className = toast.className.replace(/border-[a-z0-9\/-]+/g, 'border-emerald-500/50');
+      } else {
+        icon.className = "fa-solid fa-bookmark text-amber-400";
+        toast.className = toast.className.replace(/border-[a-z0-9\/-]+/g, 'border-amber-500/50');
+      }
+
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 2500);
+    }
+
+    function openSavedTopicsView() {
+      currentLevel = 'salvos';
+      ['fundamental', 'medio', 'faculdade', 'cursos'].forEach(l => {
+        const btn = document.getElementById(`nav-btn-${l}`);
+        if (btn) btn.classList.remove('btn-gradient-active');
+      });
+      document.getElementById('nav-btn-enem').classList.remove('btn-gradient-active');
+      document.getElementById('nav-btn-redacao').classList.remove('btn-gradient-active');
+      document.getElementById('nav-btn-salvos').classList.add('btn-gradient-active');
+
+      document.getElementById('currentLevelBadge').textContent = "📌 Assuntos Salvos para Revisão";
+      document.getElementById('selectGradeYear').innerHTML = `<option value="todos">Todos os Salvos</option>`;
+      document.getElementById('selectSubject').innerHTML = `<option value="todas">Todas as Disciplinas</option>`;
+
+      switchMainView('catalog');
+      renderSavedTopicsCatalog();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderSavedTopicsCatalog() {
+      const savedIds = getSavedTopics();
+      const savedItems = masterStudyDatabase.filter(t => savedIds.includes(t.id));
+
+      document.getElementById('topicCountBadge').textContent = `(${savedItems.length} assuntos salvos)`;
+
+      const catalog = document.getElementById("catalogView");
+      catalog.innerHTML = "";
+
+      if (savedItems.length === 0) {
+        catalog.innerHTML = `
+          <div class="col-span-full py-16 text-center text-slate-400 bg-[#0e1422] rounded-2xl border border-slate-800 p-8 space-y-3">
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-2xl border border-amber-500/30">
+              <i class="fa-regular fa-bookmark"></i>
+            </div>
+            <h3 class="text-base font-bold text-white">Você ainda não possui conteúdos salvos!</h3>
+            <p class="text-xs text-slate-400 max-w-md mx-auto">
+              Ao navegar pela grade ou durante a leitura detalhada, clique no botão de marcador para salvar conteúdos e gerar sua própria apostila de revisão.
+            </p>
+            <button onclick="filterByLevel('fundamental')" class="mt-2 px-4 py-2 rounded-lg text-xs font-semibold bg-purple-600 hover:bg-purple-500 text-white transition">
+              Explorar Grade do Fundamental
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      // Botão para baixar todos os salvos compilados
+      const downloadAllBar = document.createElement("div");
+      downloadAllBar.className = "col-span-full bg-[#0e1422] border border-amber-500/30 p-3.5 rounded-xl flex items-center justify-between flex-wrap gap-2";
+      downloadAllBar.innerHTML = `
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-file-zipper text-amber-400"></i>
+          <span class="text-xs font-bold text-white">Sua Apostila de Revisão: ${savedItems.length} temas selecionados</span>
+        </div>
+        <button onclick="downloadAllSavedMarkdown()" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 hover:bg-amber-500/30 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-download"></i> Baixar Apostila Completa dos Salvos (.MD)
+        </button>
+      `;
+      catalog.appendChild(downloadAllBar);
+
+      renderCatalogCards(savedItems, catalog);
+    }
+
+    /* ==========================================================================
+       3. FUNÇÕES DE DOWNLOAD DIRETO (MARKDOWN & PDF/IMPRESSÃO)
+       ========================================================================== */
+    function printCurrentTopic() {
+      window.print();
+    }
+
+    function downloadCurrentTopicMarkdown() {
+      const topic = masterStudyDatabase.find(t => t.id === currentSelectedId) || masterStudyDatabase[0];
+      if (!topic) return;
+
+      const cleanHtml = (html) => {
+        let temp = document.createElement("div");
+        temp.innerHTML = html;
+        return temp.textContent || temp.innerText || "";
+      };
+
+      const mdContent = `# GUIDE MEMORIZEAI - APOSTILA DE ESTUDO
+Nível: ${topic.level.toUpperCase()} | Série: ${topic.gradeYear} | Período: ${topic.bimester}
+Disciplina: ${topic.subject}
+Tema: ${topic.title}
+
+---
+
+## 📌 RESUMO EXECUTIVO
+${topic.briefDescription}
+
+## ⚡ REVISÃO RELÂMPAGO & GATILHOS
+${cleanHtml(topic.revisao)}
+
+## 📖 CONTEÚDO ESTRUTURADO COMPLETO
+${cleanHtml(topic.detalhada)}
+
+## 💡 MACETES & MNEMÔNICOS DE FIXAÇÃO
+${(macetesRepository[topic.subject] || []).map(m => cleanHtml(m)).join('\n\n')}
+
+## 📚 REFERÊNCIAS BIBLIOGRÁFICAS
+${topic.sources.join('\n')}
+
+---
+Gerado diretamente pelo Guide MemorizeAi - Plataforma de Estudos & Fixação Mnemônica.
+`;
+
+      const blob = new Blob([mdContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${topic.subject.replace(/[^a-zA-Z0-9]/g, '_')}_${topic.gradeYear.replace(/[^a-zA-Z0-9]/g, '_')}_${topic.title.substring(0, 25).replace(/[^a-zA-Z0-9]/g, '_')}.md`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      showToast("Download do arquivo .MD concluído!", "success");
+    }
+
+    function downloadAllSavedMarkdown() {
+      const savedIds = getSavedTopics();
+      const savedItems = masterStudyDatabase.filter(t => savedIds.includes(t.id));
+      if (savedItems.length === 0) return;
+
+      const cleanHtml = (html) => {
+        let temp = document.createElement("div");
+        temp.innerHTML = html;
+        return temp.textContent || temp.innerText || "";
+      };
+
+      let fullMd = `# APOSTILA COMPLETA DE REVISÃO - GUIDE MEMORIZEAI\nTotal de Assuntos Selecionados: ${savedItems.length}\nData: ${new Date().toLocaleDateString('pt-BR')}\n\n======================================================\n\n`;
+
+      savedItems.forEach((topic, idx) => {
+        fullMd += `## MÓDULO ${idx + 1}: ${topic.title}\n`;
+        fullMd += `*Disciplina:* ${topic.subject} | *Série:* ${topic.gradeYear} | *Período:* ${topic.bimester}\n\n`;
+        fullMd += `### 1. Síntese do Conteúdo\n${topic.briefDescription}\n\n`;
+        fullMd += `### 2. Teoria e Mecanismos Detalhados\n${cleanHtml(topic.detalhada)}\n\n`;
+        fullMd += `### 3. Macetes de Prova\n${cleanHtml(topic.revisao)}\n\n`;
+        fullMd += `------------------------------------------------------\n\n`;
+      });
+
+      const blob = new Blob([fullMd], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `Apostila_Completa_GuideMemorizeAi_${savedItems.length}_Assuntos.md`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      showToast("Apostila completa baixada com sucesso!", "success");
+    }
+
+    /* ==========================================================================
+       4. DICIONÁRIO & MACETES
+       ========================================================================== */
+    const dictionaryDatabase = {
+      "Morfossintaxe": {
+        grammar: "substantivo feminino • /moʁ.fo.sĩ.ˈtak.si/",
+        meaning: "Análise conjunta da forma/classe gramatical da palavra (morfologia) e da sua função relacional dentro da oração (sintaxe).",
+        context: "Diferencia predicativos de adjuntos em bancas de vestibulares exigentes."
+      },
+      "Entropia": {
+        grammar: "substantivo feminino • /ẽ.tɾo.ˈpi.a/",
+        meaning: "Medida termodinâmica do grau de dispersão de energia ou irreversibilidade de um sistema físico isolado.",
+        context: "Segunda Lei da Termodinâmica no ENEM: em sistemas isolados espontâneos, $\\Delta S_{univ} > 0$."
+      },
+      "Polissemia": {
+        grammar: "substantivo feminino • /po.li.se.ˈmi.a/",
+        meaning: "Capacidade de uma mesma palavra ou signo de congregar múltiplos sentidos distintos conforme o contexto pragmático.",
+        context: "Elemento central na interpretação de charges, ironias e ambiguidades no ENEM."
+      },
+      "Anáfora": {
+        grammar: "substantivo feminino • /a.ˈna.fo.ɾa/",
+        meaning: "Recurso coesivo pelo qual um pronome ou sinônimo retoma termo ou proposição expressa antecedentemente no texto.",
+        context: "Cobrado com rigor na Competência 4 da Redação do ENEM (coesão referencial)."
+      },
+      "Isomeria": {
+        grammar: "substantivo feminino • /i.zo.me.ˈɾi.a/",
+        meaning: "Ocorrência em que substâncias diferentes compartilham idêntica fórmula molecular, mas possuem fórmulas estruturais distintas.",
+        context: "Diferenciação entre isômeros planos (cadeia, posição, função) e espaciais (quiralidade)."
+      },
+      "Precípuo": {
+        grammar: "adjetivo • /pɾe.ˈsi.pwu/",
+        meaning: "Que é essencial, fundamental, que precede hierarquicamente aos outros.",
+        context: "Excelente vocábulo de abertura argumentativa na Redação Nota 1000."
+      },
+      "Mitigar": {
+        grammar: "verbo transitivo direto • /mi.tʃi.ˈgaʁ/",
+        meaning: "Atenuar, abrandar, diminuir a severidade ou intensidade de um problema.",
+        context: "Verbo preferencial da proposta de intervenção (Competência 5)."
+      },
+      "Estequiometria": {
+        grammar: "substantivo feminino • /es.te.kjo.me.ˈtɾi.a/",
+        meaning: "Relação quantitativa molar e de massas entre os reagentes consumidos e produtos formados em uma reação.",
+        context: "Tópico de química com maior incidência de cálculos e pegadinhas no ENEM."
+      }
+    };
+
+    const macetesRepository = {
+      "Língua Portuguesa": [
+        "🔹 <strong>Conjunções Adverbiais:</strong> 'C6 FTP' -> <strong>C</strong>ausal, <strong>C</strong>omparativa, <strong>C</strong>oncessiva, <strong>C</strong>ondicional, <strong>C</strong>onformativa, <strong>C</strong>onsecutiva, <strong>F</strong>inal, <strong>T</strong>emporal, <strong>P</strong>roporcional.",
+        "🔹 <strong>Regra da Crase:</strong> 'Vou A, volto DA: crase há! Vou A, volto DE: crase pra quê?' (Ex: <em>Vou à Bahia / Vou a Roma</em>).",
+        "🔹 <strong>Pronomes Oblíquos 'O' vs 'LHE':</strong> O/A substitui Objeto Direto (sem preposição). LHE substitui Objeto Indireto com preposição 'A'."
+      ],
+      "Língua Portuguesa e Literatura": [
+        "🔹 <strong>Evolução Literária:</strong> Barroco (Conflito Céu x Terra) ➔ Arcadismo (Bucolismo e Razão) ➔ Romantismo (Subjetivismo e Nacionalismo) ➔ Realismo (Crítica Social e Adultério de Capitu).",
+        "🔹 <strong>Semana de Arte Moderna (1922):</strong> Ruptura com o academicismo parnasiano, valorização do falar brasileiro e antropofagia cultural (Oswald e Mário de Andrade)."
+      ],
+      "Matemática": [
+        "🔹 <strong>Trigonometria:</strong> 'SOH - CAH - TOA' -> Seno = Oposto/Hipotenusa, Cosseno = Adjacente/Hipotenusa, Tangente = Oposto/Adjacente.",
+        "🔹 <strong>Vértice da Parábola:</strong> $X_v = \\frac{-b}{2a}$ ('Menos Bala pra 2 Amigos') e $Y_v = \\frac{-\\Delta}{4a}$ (determina Máximo ou Mínimo!).",
+        "🔹 <strong>Divisão de Frações:</strong> 'Mantém a 1ª fração exatamente como está e multiplica pelo INVERSO da 2ª'."
+      ],
+      "Física": [
+        "🔹 <strong>MRUV (Velocidade):</strong> $V = V_0 + a \\cdot t$ ('Vi Você Amando Tudo' ou 'Vovô Ateu').",
+        "🔹 <strong>Torricelli:</strong> $V^2 = V_0^2 + 2 \\cdot a \\cdot \\Delta S$ (use quando o tempo não for fornecido!).",
+        "🔹 <strong>Primeira Lei de Ohm:</strong> $U = R \\cdot i$ ('Quem Vê, Ri' -> Volts = Ohms x Ampères)."
+      ],
+      "Química": [
+        "🔹 <strong>Pilhas & Eletroquímica:</strong> Regra 'CRAO' -> Consoante com Consoante (<strong>C</strong>átodo <strong>R</strong>eduz), Vogal com Vogal (<strong>Â</strong>nodo <strong>O</strong>xida).",
+        "🔹 <strong>Gases Ideais:</strong> $P \\cdot V = n \\cdot R \\cdot T$ ('Por Você Nunca Rezei Tanto').",
+        "🔹 <strong>Solubilidade:</strong> 'Semelhante dissolve semelhante' (Polar dissolve Polar / Apolar dissolve Apolar)."
+      ],
+      "Biologia": [
+        "🔹 <strong>Taxonomia:</strong> 'Re-Fi-C-O-Fa-G-E' -> <strong>Re</strong>ino, <strong>Fi</strong>lo, <strong>C</strong>lasse, <strong>O</strong>rdem, <strong>Fa</strong>mília, <strong>G</strong>ênero, <strong>E</strong>spécie.",
+        "🔹 <strong>Bases do DNA:</strong> 'A-T e C-G' (<strong>A</strong>gnaldo <strong>T</strong>imóteo e <strong>G</strong>al <strong>C</strong>osta). No RNA: Uracila substitui Timina (A-U)."
+      ],
+      "História": [
+        "🔹 <strong>Revoltas Regenciais Brasileiras:</strong> 'F-A-R-O-F-A' -> <strong>Far</strong>roupilha (RS), <strong>Ca</strong>banagem (PA), <strong>Bal</strong>aiada (MA), <strong>Sab</strong>inada (BA).",
+        "🔹 <strong>Pilares do Iluminismo:</strong> Razão individual, separação de poderes (Montesquieu) e crítica contundente ao absolutismo monárquico."
+      ],
+      "Geografia": [
+        "🔹 <strong>Domínios Morfoclimáticos:</strong> Classificação de Aziz Ab'Sáber: Amazônico, Cerrado, Mares de Morros, Caatinga, Araucárias e Pradarias.",
+        "🔹 <strong>El Niño vs La Niña:</strong> El Niño aquece as águas do Pacífico equatorial; La Niña resfria e altera as chuvas globais."
+      ],
+      "Filosofia": [
+        "🔹 <strong>Tríade Clássica:</strong> Sócrates (Maiêutica e autoexame: 'Só sei que nada sei') ➔ Platão (Mundo das Ideias e Mito da Caverna) ➔ Aristóteles (Empirismo e Ética do Meio-Termo).",
+        "🔹 <strong>Contratualistas:</strong> Hobbes (Leviatã, Estado Forte) ➔ Locke (Direitos Naturais e Propriedade) ➔ Rousseau (Vontade Geral e Homem Bom Corrompido)."
+      ],
+      "Sociologia": [
+        "🔹 <strong>Três Porquinhos da Sociologia:</strong> Émile Durkheim (Fato Social e Coerção Externa), Karl Marx (Luta de Classes e Materialismo Histórico), Max Weber (Ação Social e Tipos Ideais)."
+      ],
+      "Direito": [
+        "🔹 <strong>Conceito de Crime:</strong> Fato <strong>Típico</strong> + <strong>Ilícito</strong> + <strong>Culpável</strong>.",
+        "🔹 <strong>Gerações de Direitos:</strong> 1ª Liberdade ➔ 2ª Igualdade ➔ 3ª Fraternidade."
+      ]
+    };
+
+    /* ==========================================================================
+       5. BASE DE DADOS COMPLETA E DETALHADA (BNCC & ENSINO MÉDIO)
+       ========================================================================== */
+    const masterStudyDatabase = [];
+
+    // --- CURRÍCULO PROFUNDO DO ENSINO FUNDAMENTAL (6º AO 9º ANO) ---
+    const fundCurriculum = [
+      // 6º ANO
+      { grade: "6º Ano", bim: "1º Bimestre", subj: "Língua Portuguesa", title: "Estrutura Narrativa, Elementos da Ficção e Tipologias",
+        desc: "Domínio dos cinco componentes da narrativa: personagem, tempo cronológico/psicológico, espaço, narrador e clímax.",
+        fund: "A narrativa organiza-se a partir de um estado de equilíbrio perturbado por um conflito gerador. A <span class='vocab-word' onclick='showVocabularyModal(\"Morfossintaxe\")'>Morfossintaxe</span> dos tempos pretéritos (perfeito e imperfeito) determina o ritmo da ação e da descrição.",
+        mec: "O enredo segue: 1. Situação Inicial ➔ 2. Conflito Gerador ➔ 3. Clímax ➔ 4. Desfecho. O foco narrativo pode ser em 1ª pessoa (personagem) ou 3ª pessoa (onisciente/observador).",
+        ex: "Em 'A Cartomante' de Machado de Assis, o narrador onisciente transita livremente pelos sentimentos de Camilo e Rita, conduzindo o leitor até o clímax trágico.",
+        peg: "Confundir autor (ser real que escreveu) com narrador (voz ficcional inventada para contar a história)."
+      },
+      { grade: "6º Ano", bim: "2º Bimestre", subj: "Matemática", title: "Operações Fundamentais, Critérios de Divisibilidade e Frações",
+        desc: "Propriedades aritméticas, critérios de divisibilidade (2, 3, 5, 9 e 10), simplificação e equivalência de frações.",
+        fund: "O Teorema Fundamental da Aritmética postula que todo número inteiro maior que 1 pode ser decomposto de maneira única como produto de fatores primos.",
+        mec: "Na adição e subtração de frações com denominadores distintos, calcula-se o MMC dos denominadores antes de somar os numeradores proporcionais.",
+        ex: "Para calcular 2/3 + 1/4: MMC(3,4) = 12. Então (8/12) + (3/12) = 11/12.",
+        peg: "Somar diretamente numeradores e denominadores (Ex: 2/3 + 1/4 ≠ 3/7!). Isso viola o princípio da proporcionalidade."
+      },
+      { grade: "6º Ano", bim: "3º Bimestre", subj: "Ciências da Natureza", title: "Litosfera, Camadas da Terra e Ciclo Hidrológico",
+        desc: "Crosta terrestre, manto, núcleo, placas tectônicas, tipos de rochas (magmáticas, sedimentares e metamórficas) e ciclo da água.",
+        fund: "A Terra estrutura-se em camadas composicionais e mecânicas. As correntes de convecção no manto impulsionam o movimento das placas tectônicas.",
+        mec: "O ciclo hidrológico movimenta a matéria através da evaporação, condensação, precipitação, infiltração e transpiração vegetal, regulando o clima global.",
+        ex: "Rochas sedimentares acumulam fósseis devido ao soterramento ordenado e diagênese ao longo de milhões de anos.",
+        peg: "Achar que a crosta terrestre é inteiriça; ela é fragmentada em placas que colidem (convergência) ou se afastam (divergência)."
+      },
+      { grade: "6º Ano", bim: "4º Bimestre", subj: "História", title: "Origens da Humanidade e Antiguidade Oriental (Egito e Mesopotâmia)",
+        desc: "Paleolítico, Neolítico, Revolução Agrícola, teocracias de regadio e importância dos rios Tigre, Eufrates e Nilo.",
+        fund: "A transição do nomadismo de caça para o sedentarismo agrícola no Crescente Fértil viabilizou a divisão social do trabalho, escrita cuneiforme e tributação.",
+        mec: "O Estado teocrático legitimava a cobrança de tributos atribuindo ao faraó ou ao rei-sacerdote o estatuto de representante divino ou o próprio deus.",
+        ex: "O Código de Hamurábi ('Olho por olho, dente por dente') organizava a jurisprudência na Babilônia segundo a posição social do réu e da vítima.",
+        peg: "Acreditar que a Lei de Talião era igualitária; a penalidade variava radicalmente se a vítima fosse nobre, homem livre ou escravizado."
+      },
+      { grade: "6º Ano", bim: "1º Bimestre", subj: "Geografia", title: "Cartografia, Escalas, Fusos Horários e Orientação Espacial",
+        desc: "Coordenadas geográficas (latitude/longitude), projeções cilíndricas/cônicas e cálculos de escala gráfica e numérica.",
+        fund: "A Terra possui formato geoide. As coordenadas geográficas resultam do cruzamento entre os paralelos (a partir do Equador) e meridianos (Greenwich).",
+        mec: "Fórmula da Escala: $D = d \\cdot E$, onde $D$ é a distância real, $d$ é a distância no mapa e $E$ é o denominador da escala.",
+        ex: "Se um mapa tem escala 1:100.000, 1 cm no papel corresponde a 100.000 cm = 1.000 metros = 1 km real.",
+        peg: "Escala grande abrange pequena área e tem muito detalhe (ex: 1:5.000). Escala pequena abrange o planeta todo e tem pouco detalhe (ex: 1:50.000.000)."
+      },
+
+      // 7º ANO
+      { grade: "7º Ano", bim: "1º Bimestre", subj: "Língua Portuguesa", title: "Sintaxe da Oração: Sujeito, Predicado e Transitividade Verbal",
+        desc: "Identificação formal dos termos essenciais da oração, verbos transitivos diretos, indiretos e intransitivos.",
+        fund: "A oração articula-se em torno de um verbo. A sintaxe define as funções relacionais dos substantivos como sujeito agente/paciente ou complementos verbais.",
+        mec: "VTD exige complemento sem preposição obrigatória (Objeto Direto). VTI exige complemento introduzido por preposição (Objeto Indireto).",
+        ex: "Em 'O professor entregou o prêmio ao aluno': 'entregou' é VTDI, 'o prêmio' é Objeto Direto e 'ao aluno' é Objeto Indireto.",
+        peg: "Achar que o sujeito sempre vem no início da frase. Na ordem inversa ('Chegaram os documentos'), 'os documentos' continua sendo o sujeito!"
+      },
+      { grade: "7º Ano", bim: "2º Bimestre", subj: "Matemática", title: "Números Inteiros, Álgebra Inicial e Equações de 1º Grau",
+        desc: "Regras de sinais na reta numérica, simplificação de monômios e princípios de equivalência aditiva e multiplicativa.",
+        fund: "O conjunto $\\mathbb{Z}$ expande os números naturais para expressar dívidas, temperaturas negativas e altitudes. O zero é neutro.",
+        mec: "Na multiplicação: sinais iguais resultam em positivo ($(-3) \\cdot (-4) = +12$), sinais diferentes resultam em negativo ($(-3) \\cdot (+4) = -12$).",
+        ex: "Para $3x - 7 = 14 \\implies 3x = 14 + 7 \\implies 3x = 21 \\implies x = 7$.",
+        peg: "Errar o sinal ao transportar termos entre os lados da igualdade. Mudar de lado exige aplicar a operação inversa!"
+      },
+      { grade: "7º Ano", bim: "3º Bimestre", subj: "Ciências da Natureza", title: "Biodiversidade: Bactérias, Fungos, Vírus e Reinos Biológicos",
+        desc: "Estrutura dos seres vivos, vírus acelulares, reprodução bacteriana e importância ecológica da decomposição.",
+        fund: "A classificação dos seres vivos agrupa procariontes (sem carioteca no Reino Monera) e eucariontes (com carioteca e organelas membranosas).",
+        mec: "Vírus não possuem metabolismo próprio (parasitas intracelulares obrigatórios), não respondem a antibióticos e utilizam a maquinaria da célula hospedeira.",
+        ex: "Antibióticos atuam na síntese da parede celular bacteriana de peptidoglicano, sendo completamente ineficazes contra gripes e resfriados virais.",
+        peg: "Prescrever antibiótico para infecção viral. Isso causa resistência bacteriana sem tratar o paciente."
+      },
+      { grade: "7º Ano", bim: "4º Bimestre", subj: "História", title: "Idade Média Europeia, Feudalismo e Renascimento Cultural",
+        desc: "Ruralização europeia, suserania e vassalagem, poder da Igreja Católica e transição humanista do Teocentrismo ao Antropocentrismo.",
+        fund: "O feudalismo descentralizou o poder político militar na figura dos senhores feudais, apoiando-se na exploração da servidão na terra.",
+        mec: "O Renascimento baseou-se no Humanismo, resgate dos valores clássicos greco-romanos, mecenato burguês e valorização da observação científica.",
+        ex: "Leonardo da Vinci e Michelangelo aplicaram a perspectiva geométrica e anatomia real nas artes plásticas.",
+        peg: "Chamar a Idade Média de 'Idade das Trevas'. Esse rótulo pejorativo foi criado pelos renascentistas e ignora a rica produção filosófica e universitária medieval."
+      },
+      { grade: "7º Ano", bim: "1º Bimestre", subj: "Geografia", title: "Formação Territorial e Domínios Naturais do Brasil",
+        desc: "Tratado de Tordesilhas, ciclos econômicos (pau-brasil, cana, ouro, café), biomas e a classificação morfológica de Aziz Ab'Sáber.",
+        fund: "O espaço geográfico brasileiro foi estruturado em arquipélago econômico voltado para a exportação de commodities primárias para as metrópoles.",
+        mec: "Os 6 domínios morfoclimáticos (Amazônia, Cerrado, Caatinga, Mares de Morros, Araucárias e Pradarias) refletem a interação entre clima, relevo e vegetação.",
+        ex: "O Cerrado é a 'caixa d'água' do Brasil por abrigar as nascentes das três maiores bacias hidrográficas da América do Sul.",
+        peg: "Achar que a Caatinga é um deserto morto. Ela possui enorme biodiversidade endêmica adaptada ao estresse hídrico com plantas xerófitas."
+      },
+
+      // 8º ANO
+      { grade: "8º Ano", bim: "1º Bimestre", subj: "Língua Portuguesa", title: "Vozes Verbais, Regência Verbal e Concordância",
+        desc: "Voz ativa, passiva analítica/sintética, reflexiva e normas cultas de regência de verbos de alta incidência (aspirar, assistir, visar).",
+        fund: "A voz verbal expressa a relação de agência do sujeito sintático perante o processo verbal. A regência governa a presença ou ausência de preposições.",
+        mec: "Transposição de voz ativa para passiva: O objeto direto torna-se sujeito paciente; o verbo ganha o auxiliar 'ser' + particípio.",
+        ex: "'O comitê aprovou o projeto' (Ativa) ➔ 'O projeto foi aprovado pelo comitê' (Passiva Analítica).",
+        peg: "Errar a regência do verbo 'assistir': no sentido de presenciar/ver, ele exige preposição 'a' ('Assisti ao filme', e nunca 'Assisti o filme')."
+      },
+      { grade: "8º Ano", bim: "2º Bimestre", subj: "Matemática", title: "Sistemas Lineares de 1º Grau, Ângulos e Geometria dos Polígonos",
+        desc: "Resolução de sistemas pelo método da adição e substituição, soma dos ângulos internos de polígonos ($S_i = (n-2) \\cdot 180^\\circ$).",
+        fund: "Geometricamente, a solução de um sistema de duas equações lineares com duas incógnitas representa o ponto de interseção $(x,y)$ de duas retas no plano.",
+        mec: "Soma dos ângulos internos de qualquer polígono convexo de $n$ lados: $S_i = (n-2) \\cdot 180^\\circ$. Para polígonos regulares, cada ângulo interno vale $A_i = S_i / n$.",
+        ex: "Um hexágono tem $n=6$ lados. $S_i = (6-2) \\cdot 180^\\circ = 4 \\cdot 180^\\circ = 720^\\circ$. Cada ângulo mede $720^\\circ / 6 = 120^\\circ$.",
+        peg: "Esquecer que a soma dos ângulos externos de qualquer polígono convexo é sempre constante e igual a $360^\\circ$, independentemente do número de lados!"
+      },
+      { grade: "8º Ano", bim: "3º Bimestre", subj: "Ciências da Natureza", title: "Sistemas do Corpo Humano: Digestório, Cardiovascular e Respiratório",
+        desc: "Fisiologia humana, circulação sistêmica e pulmonar, trocas gasosas nos alvéolos e digestão mecânica/química.",
+        fund: "O organismo humano opera sob o princípio da homeostase integrada. O sistema circulatório transporta nutrientes e gases para a respiração celular mitocondrial.",
+        mec: "Na pequena circulação: Coração (ventrículo direito) ➔ Pulmões (hematose) ➔ Coração (átrio esquerdo). Na grande circulação, o sangue arterial vai para o corpo.",
+        ex: "As artérias saem do coração com sangue em alta pressão; as veias chegam ao coração e possuem válvulas para impedir o refluxo sanguíneo.",
+        peg: "Achar que artéria só carrega sangue oxigenado. A artéria pulmonar transporta sangue venoso do coração para os pulmões!"
+      },
+      { grade: "8º Ano", bim: "4º Bimestre", subj: "História", title: "Iluminismo, Revolução Industrial e Revolução Francesa (1789)",
+        desc: "Queda da Bastilha, fim do Antigo Regime absolutista, divisão dos três poderes (Montesquieu) e maquinofatura inglesa.",
+        fund: "A Revolução Francesa rompeu com o privilégio feudal da nobreza e clero, institucionalizando os direitos burgueses com o lema Liberdade, Igualdade e Fraternidade.",
+        mec: "A Revolução Industrial substituiu a manufatura pela máquina a vapor, criando duas classes antagônicas: a burguesia industrial e o proletariado assalariado.",
+        ex: "A Declaração dos Direitos do Homem e do Cidadão estabeleceu a isonomia jurídica de todos perante a lei escrita.",
+        peg: "Achar que a Revolução Francesa foi um bloco pacífico e homogêneo; ela teve fases extremas como o Terror Jacobino liderado por Robespierre na guilhotina."
+      },
+      { grade: "8º Ano", bim: "1º Bimestre", subj: "Geografia", title: "Geopolítica Mundial, População, Migrações e Indicadores (IDH)",
+        desc: "Transição demográfica, pirâmides etárias, fluxos migratórios contemporâneos e cálculo multidimensional do Índice de Desenvolvimento Humano.",
+        fund: "O IDH avalia três dimensões fundamentais: saúde/expectativa de vida, educação/anos de escolaridade e padrão de vida medido pela renda per capita.",
+        mec: "A transição demográfica inicia com queda na mortalidade (melhoria sanitária) seguida de queda na natalidade (urbanização e anticoncepcionais).",
+        ex: "Países desenvolvidos enfrentam o estreitamento da base da pirâmide etária e envelhecimento populacional, exigindo reformas previdenciárias.",
+        peg: "Confundir país populoso (número absoluto de habitantes, ex: Brasil com 215 milhões) com país povoado (densidade demográfica alta por km²)."
+      },
+
+      // 9º ANO
+      { grade: "9º Ano", bim: "1º Bimestre", subj: "Língua Portuguesa", title: "Período Composto: Orações Coordenadas e Subordinadas Substantivas",
+        desc: "Classificação das orações coordenadas sindéticas (aditivas, adversativas, alternativas, conclusivas, explicativas) e subordinadas integrantes.",
+        fund: "O período composto expressa relações lógicas de causa, oposição e dependência sintática. As orações subordinadas exercem a função de termos da oração principal.",
+        mec: "Oração Subordinada Substantiva Subjetiva exerce função de sujeito da principal. Teste de ouro: substitua toda a oração subordinada pela palavra 'ISSO'.",
+        ex: "'É fundamental que você estude' ➔ 'É fundamental ISSO' ➔ 'ISSO é fundamental'. Logo, a oração introduzida por 'que' é Subordinada Substantiva Subjetiva!",
+        peg: "Confundir conjunção integrante 'que' (que introduz oração substantiva) com pronome relativo 'que' (que introduz oração adjetiva e pode ser trocado por 'o qual')."
+      },
+      { grade: "9º Ano", bim: "2º Bimestre", subj: "Matemática", title: "Equações de 2º Grau (Fórmula de Bhaskara) e Teorema de Pitágoras",
+        desc: "Resolução de equações quadráticas via discriminante delta, relações métricas no triângulo retângulo e Teorema de Pitágoras ($a^2 = b^2 + c^2$).",
+        fund: "O Teorema de Pitágoras estabelece que a área do quadrado construído sobre a hipotenusa é igual à soma das áreas dos quadrados construídos sobre os catetos.",
+        mec: "Discriminante $\\Delta = b^2 - 4ac$. Se $\\Delta > 0$, duas raízes reais distintas; se $\\Delta = 0$, uma raiz real dupla; se $\\Delta < 0$, não há raízes reais.",
+        ex: "Para $x^2 - 5x + 6 = 0$: $\\Delta = (-5)^2 - 4(1)(6) = 25 - 24 = 1$. Raízes: $x = (5 \\pm 1)/2 \\implies x_1 = 3, x_2 = 2$.",
+        peg: "Esquecer os parênteses no quadrado de números negativos: $(-4)^2 = +16$, mas $-4^2 = -16$!"
+      },
+      { grade: "9º Ano", bim: "3º Bimestre", subj: "Ciências da Natureza", title: "Fundamentos de Química: Matéria, Átomos e Tabela Periódica",
+        desc: "Evolução dos modelos atômicos (Dalton, Thomson, Rutherford, Bohr), número atômico ($Z$), massa ($A$) e distribuição eletrônica em camadas.",
+        fund: "Toda matéria é formada por átomos compostos de prótons e nêutrons no núcleo central denso e elétrons orbitando na eletrosfera.",
+        mec: "Em um átomo eletricamente neutro: $N^o \\text{ de Prótons} = N^o \\text{ de Elétrons} = Z$. O número de massa vale $A = Z + N$.",
+        ex: "O elemento Carbono ($Z=6, A=12$) possui 6 prótons, 6 elétrons e 6 nêutrons. Seus elétrons distribuem-se como $1s^2 2s^2 2p^2$.",
+        peg: "Achar que íons ganham ou perdem prótons. O núcleo permanece intocado nas reações químicas; apenas elétrons são transferidos ou compartilhados!"
+      },
+      { grade: "9º Ano", bim: "4º Bimestre", subj: "História", title: "República Brasileira, Primeira Guerra e Era Vargas (1930-1945)",
+        desc: "República da Espada, Política do Café com Leite, Revolução de 1930, criação das leis trabalhistas (CLT) e o Estado Novo autoritário.",
+        fund: "A Era Vargas marcou a transição da economia agrário-exportadora oligárquica para o modelo urbano-industrial de substituição de importações.",
+        mec: "Vargas equilibrou o controle da classe trabalhadora mediante a concessão de direitos trabalhistas atrelados à sindicalização sob tutela estatal (peleguismo).",
+        ex: "A Constituição outorgada de 1937 ('A Polaca') instituiu a ditadura do Estado Novo, fechando o Congresso e censurando a imprensa via DIP.",
+        peg: "Achar que a CLT foi pura benevolência de Vargas; foi resultado de décadas de greves e lutas anarquistas e socialistas que Vargas canalizou e estatizou."
+      },
+      { grade: "9º Ano", bim: "1º Bimestre", subj: "Geografia", title: "Globalização, Blocos Econômicos e Redes Técnicas",
+        desc: "Meio técnico-científico-informacional (Milton Santos), União Europeia, Mercosul, multinacionais e a divisão internacional do trabalho.",
+        fund: "A globalização intensificou a compressão espaço-tempo viabilizada pela fibra óptica, aviação comercial e internet, mas opera de forma fragmentada e desigual.",
+        mec: "Os estágios de integração dos blocos econômicos: 1. Zona de Livre Comércio ➔ 2. União Aduaneira ➔ 3. Mercado Comum ➔ 4. União Econômica e Monetária.",
+        ex: "A União Europeia atingiu o estágio máximo de união monetária com o Euro e livre circulação de pessoas pelo Acordo de Schengen.",
+        peg: "Achar que o Mercosul é um Mercado Comum pleno. Ele ainda é uma União Aduaneira imperfeita com tarifa externa comum (TEC) cheia de exceções."
+      }
+    ];
+
+    // --- CURRÍCULO PROFUNDO DO ENSINO MÉDIO (1º AO 3º ANO - 9 DISCIPLINAS) ---
+    const medioCurriculum = [
+      // 1º ANO MÉDIO
+      { grade: "1º Médio", bim: "1º Bimestre", subj: "Língua Portuguesa e Literatura", title: "Trovadorismo, Classicismo Camoniano e Funções da Linguagem",
+        desc: "Cantigas medievais de amor e amigo, soneto clássico de Camões e as 6 funções da linguagem de Roman Jakobson.",
+        fund: "As funções da linguagem estruturam-se segundo o foco no elemento da comunicação: emotiva (emissor), apelativa (receptor), referencial (contexto), fática (canal), metalinguística (código) e poética (mensagem).",
+        mec: "No Classicismo, o soneto decassílabo expressa o neoplatonismo: busca pelo amor idealizado, racionalidade, simetria e clareza formal.",
+        ex: "'Amor é fogo que arde sem se ver' (Camões) exemplifica o uso poético de paradoxos e antíteses para expressar a contradição sentimental.",
+        peg: "Confundir função poética (trabalho com a sonoridade e estética da mensagem) com função emotiva (expressão explícita de sentimentos na 1ª pessoa)."
+      },
+      { grade: "1º Médio", bim: "2º Bimestre", subj: "Matemática", title: "Funções Afim e Quadrática: Vértice, Zeros e Análise Gráfica",
+        desc: "Modelagem linear e parabólica, taxas de variação, cálculo do ponto de máximo/mínimo no plano cartesiano.",
+        fund: "Uma função afim $f(x) = ax + b$ descreve crescimento constante com taxa $a = \\Delta y / \\Delta x$. A função quadrática $f(x) = ax^2 + bx + c$ modela trajetórias parabólicas e otimização.",
+        mec: "Coordenadas do Vértice da parábola: $X_v = -b / (2a)$ e $Y_v = -\\Delta / (4a)$. Se $a < 0$, a concavidade é para baixo e o vértice é ponto de MÁXIMO.",
+        ex: "Se o lucro de uma empresa segue $L(x) = -2x^2 + 80x - 300$, a quantidade que maximiza o lucro é $X_v = -80 / (2 \\cdot (-2)) = 20$ unidades.",
+        peg: "Confundir a pergunta da questão: 'qual quantidade vendida maximiza o lucro?' exige $X_v$. 'Qual é o lucro máximo obtido?' exige $Y_v$!"
+      },
+      { grade: "1º Médio", bim: "3º Bimestre", subj: "Física", title: "Dinâmica Newtoniana: Leis de Newton, Atrito e Força Centrípeta",
+        desc: "Princípio da Inércia, Princípio Fundamental da Dinâmica ($F_R = m \\cdot a$) e Ação e Reação em referenciais inerciais.",
+        fund: "A força não é propriedade do corpo, mas o resultado da interação entre dois corpos. A inércia mede a resistência de uma massa a ter seu vetor velocidade alterado.",
+        mec: "Força de atrito estático máximo: $F_{at} = \\mu_e \\cdot N$. Em trajetórias circulares, a resultante centrípeta vale $F_{cp} = m \\cdot v^2 / R$.",
+        ex: "Um passageiro é projetado para a frente na freada do ônibus não por uma 'força misteriosa', mas pela Inércia de continuar em MRU (1ª Lei de Newton).",
+        peg: "Achar que par de ação e reação se anula! Ação e reação atuam em **corpos diferentes**, logo **nunca se equilibram** mutuamente."
+      },
+      { grade: "1º Médio", bim: "4º Bimestre", subj: "Química", title: "Ligações Químicas, Geometria Molecular e Forças Intermoleculares",
+        desc: "Ligação iônica (transferência de elétrons), covalente (compartilhamento) e forças de London, Dipolo-Dipolo e Pontes de Hidrogênio.",
+        fund: "Os átomos ligam-se para atingir a estabilidade eletrônica análoga aos gases nobres (Regra do Octeto: 8 elétrons na camada de valência).",
+        mec: "A teoria da repulsão dos pares eletrônicos (VSEPR) dita as geometrias: Linear ($CO_2$), Angular ($H_2O$), Trigonal Plana ($BF_3$) e Tetraédrica ($CH_4$).",
+        ex: "A água ($H_2O$) possui geometria angular com ângulo de $104,5^\\circ$ e realiza pontes de hidrogênio intensas, explicando seu ponto de ebulição elevado ($100^\\circ C$).",
+        peg: "Achar que a molécula de $CO_2$ é polar por ter ligações polares. A geometria linear anula os momentos dipolares vetoriais ($\\mu_R = 0$), tornando-a APOLAR!"
+      },
+      { grade: "1º Médio", bim: "1º Bimestre", subj: "Biologia", title: "Bioquímica Celular, Ácidos Nucleicos e Respiração Celular",
+        desc: "Proteínas, enzimas, replicação do DNA, transcrição/tradução e produção de ATP via Glicólise, Ciclo de Krebs e Fosforilação.",
+        fund: "A respiração celular aeróbica converte energia química dos macronutrientes em moléculas de ATP na presença de oxigênio: $C_6H_{12}O_6 + 6O_2 \\rightarrow 6CO_2 + 6H_2O + 32\\text{ ATP}$.",
+        mec: "1. Glicólise ocorre no hialoplasma (anaeróbica) ➔ 2. Ciclo de Krebs ocorre na matriz mitocondrial ➔ 3. Cadeia Respiratória ocorre nas cristas mitocondriais.",
+        ex: "O oxigênio inalado atua como o **aceptor final de elétrons e prótons $H^+$** na cadeia respiratória, formando água vital.",
+        peg: "Achar que o $CO_2$ expirado vem do oxigênio que respiramos. O gás carbônico vem da oxidação e quebra da molécula de glicose durante o Ciclo de Krebs!"
+      },
+      { grade: "1º Médio", bim: "2º Bimestre", subj: "História", title: "Grécia Antiga (Democracia Ateniense) e Império Romano",
+        desc: "Pólis grega, cidadania direta excludente em Atenas, expansão militar romana, crise da República e Pax Romana.",
+        fund: "A cidadania ateniense no século V a.C. era direta (isonomia e isegoria na Ágora), porém restrita a homens livres, filhos de pais atenienses e maiores de idade.",
+        mec: "Roma consolidou seu império sustentada pelo modo de produção escravista obtido pelas conquistas de guerra e pela política de 'Pão e Circo'.",
+        ex: "O assassinato de Júlio César no Senado marcou a impossibilidade de manter as instituições republicanas diante do poder dos generais do exército.",
+        peg: "Pensar que a democracia grega incluía a população inteira: mulheres, estrangeiros (metecos) e escravizados eram completamente excluídos dos direitos políticos."
+      },
+      { grade: "1º Médio", bim: "3º Bimestre", subj: "Geografia", title: "Geomorfologia, Tectonismo, Solos e Climatologia Dinâmica",
+        desc: "Dinâmica interna (vulcanismo, abalos sísmicos) e externa (intemperismo, erosão) do relevo, massas de ar e climogramas.",
+        fund: "O relevo resulta da interação constante entre agentes endógenos construtores (tectonismo de placas) e agentes exógenos modeladores (chuvas, ventos e rios).",
+        mec: "O Brasil situa-se no centro da Placa Sul-Americana, caracterizando-se por estabilidade geológica e relevo antigo e desgastado por erosão profunda.",
+        ex: "A Massa Polar Atlântica (mPA) provoca o fenômeno da 'friagem' na Amazônia Ocidental ao avançar pelas planícies do interior do continente no inverno.",
+        peg: "Afirmar que no Brasil existem terremotos de grande magnitude causados por encontro de placas; os tremores aqui são reflexos de acomodação de falhas geológicas locais."
+      },
+      { grade: "1º Médio", bim: "4º Bimestre", subj: "Filosofia", title: "Passagem do Mito ao Lógos, Pré-Socráticos e o Método Socrático",
+        desc: "Cosmogonia mítica vs Cosmologia racional, busca da arché (Tales, Heráclito, Parmênides) e a maiêutica socrática.",
+        fund: "A filosofia nasce na Grécia Antiga no século VI a.C. com a ruptura com as narrativas mitológicas tradicionais em prol de explicações baseadas no princípio do Lógos.",
+        mec: "O método socrático compõe-se de duas etapas: 1. Ironia (refutação das certezas ilusórias do interlocutor) ➔ 2. Maiêutica ('parto' de ideias verdadeiras do interior da alma).",
+        ex: "Heráclito defendia o devir constante ('Nenhum homem se banha duas vezes no mesmo rio'), enquanto Parmênides sustentava a imutabilidade absoluta do Ser.",
+        peg: "Achar que a maiêutica socrática transmitia conteúdo pronto. Sócrates afirmava não ensinar nada, apenas conduzir o indivíduo a pensar por si mesmo."
+      },
+      { grade: "1º Médio", bim: "1º Bimestre", subj: "Sociologia", title: "Surgimento da Sociologia, Positivismo e Método Científico Social",
+        desc: "Revoluções Burguesas como estopim das ciências sociais, Auguste Comte e a Lei dos Três Estados.",
+        fund: "A Sociologia surge no século XIX como resposta às profundas crises sociais provocadas pelo êxodo rural desordenado, proletarização e urbanização da Revolução Industrial.",
+        mec: "A Lei dos Três Estados de Comte: 1. Estado Teológico (deuses) ➔ 2. Estado Metafísico (filosofia abstrata) ➔ 3. Estado Positivo (ciência empírica e leis causais).",
+        ex: "O lema da bandeira brasileira 'Ordem e Progresso' é uma transposição literal do positivismo comtiano pelas mãos dos militares da proclamação da República.",
+        peg: "O positivismo considerava a sociedade regida pelas mesmas leis imutáveis da física e da biologia ('física social'), desconsiderando a subjetividade humana."
+      },
+
+      // 2º ANO MÉDIO
+      { grade: "2º Médio", bim: "1º Bimestre", subj: "Língua Portuguesa e Literatura", title: "Romantismo no Brasil, Realismo e a Trilogia Machadiana",
+        desc: "Gerações românticas (Nacionalista, Ultrarromântica e Condoreira), Realismo de Machado de Assis e o Naturalismo de Aluísio Azevedo.",
+        fund: "O Realismo surge em 1881 com 'Memórias Póstumas de Brás Cubas', rompendo com a idealização amorosa e nacionalista do Romantismo por meio da análise psicológica impiedosa.",
+        mec: "Enquanto o Realismo foca na hipocrisia das classes abastadas e no casamento por conveniência, o Naturalismo trata o ser humano como produto biológico condicionado pelo meio (zoomorfização).",
+        ex: "Em 'O Cortiço', os personagens são descritos com traços animais sob a influência do calor tropical e do ambiente degradado.",
+        peg: "Achar que Machado de Assis pertencia ao Naturalismo. Machado era Realista refinado, focado na sutileza psicológica e na quebra da linearidade narrativa."
+      },
+      { grade: "2º Médio", bim: "2º Bimestre", subj: "Matemática", title: "Trigonometria no Ciclo Trigonométrico e Geometria Espacial",
+        desc: "Seno, cosseno e tangente no círculo unitário, Teorema dos Senos e Cossenos, prismas, cilindros e cálculo de volumes.",
+        fund: "Relação fundamental: $\\sin^2(x) + \\cos^2(x) = 1$. O volume de qualquer prisma ou cilindro reto é dado pelo produto da área da base pela altura: $V = A_b \\cdot h$.",
+        mec: "Volume do Cilindro: $V = \\pi r^2 h$. Volume do Cone ou Pirâmide: $V = \\frac{1}{3} A_b \\cdot h$. Volume da Esfera: $V = \\frac{4}{3} \\pi r^3$.",
+        ex: "Um silo cilíndrico de raio $3\\text{ m}$ e altura $10\\text{ m}$ possui volume $V = \\pi \\cdot 3^2 \\cdot 10 = 90\\pi\\text{ m}^3 \\approx 282,6\\text{ m}^3$.",
+        peg: "Esquecer de dividir por 3 no volume do cone e da pirâmide! Figuras que terminam em ponta (cúspide) sempre equivalem a 1/3 do volume do prisma correspondente."
+      },
+      { grade: "2º Médio", bim: "3º Bimestre", subj: "Física", title: "Termodinâmica: Calorimetria, Máquinas Térmicas e Entropia",
+        desc: "Calor sensível ($Q = m c \\Delta T$), calor latente ($Q = m L$), 1ª Lei ($\\Delta U = Q - W$) e o Ciclo de Carnot.",
+        fund: "A 1ª Lei da Termodinâmica é a conservação da energia. A 2ª Lei postula que o calor não flui espontaneamente de uma fonte fria para uma fonte quente e a <span class='vocab-word' onclick='showVocabularyModal(\"Entropia\")'>Entropia</span> universal cresce.",
+        mec: "Rendimento de uma Máquina Térmica: $\\eta = 1 - \\frac{Q_f}{Q_q}$. O rendimento máximo teórico é o de Carnot: $\\eta_{Carnot} = 1 - \\frac{T_f}{T_q}$ (com temperaturas sempre em Kelvin!).",
+        ex: "Um motor que opera entre $300\\text{ K}$ e $600\\text{ K}$ jamais terá rendimento superior a $\\eta = 1 - (300/600) = 0,50$ (50%).",
+        peg: "Usar graus Celsius na fórmula de rendimento de Carnot. É obrigatório converter para Kelvin: $T(K) = T(^\\circ C) + 273$!"
+      },
+      { grade: "2º Médio", bim: "4º Bimestre", subj: "Química", title: "Termoquímica, Cinética Química e Deslocamento de Equilíbrio",
+        desc: "Entalpia ($\\Delta H$), Lei de Hess, energia de ativação e Princípio de Le Chatelier em reações reversíveis.",
+        fund: "O equilíbrio químico é dinâmico: as velocidades das reações direta e inversa igualam-se, e as concentrações de reagentes e produtos tornam-se constantes no tempo.",
+        mec: "Princípio de Le Chatelier: Se um sistema em equilíbrio sofre perturbação de temperatura, pressão ou concentração, ele desloca-se no sentido de anular essa perturbação.",
+        ex: "Aumentar a pressão desloca o equilíbrio para o lado com **menor volume gasoso** (menor número de mols gasosos).",
+        peg: "Achar que catalisador altera o equilíbrio químico. O catalisador apenas diminui a energia de ativação, fazendo o equilíbrio ser atingido mais rápido, sem mudar o rendimento final!"
+      },
+      { grade: "2º Médio", bim: "1º Bimestre", subj: "Biologia", title: "Genética Mendeliana: Leis de Mendel, Heredogramas e Grupos Sanguíneos",
+        desc: "Monohibridismo, genealogias, sistema ABO, fator Rh e herança ligada ao cromossomo sexual X.",
+        fund: "A 1ª Lei de Mendel (Segregação dos Fatores): cada caráter é determinado por um par de alelos que se separam na formação dos gametas haploides durante a meiose.",
+        mec: "No sistema ABO: Sangue A ($I^A I^A$ ou $I^A i$), Sangue B ($I^B I^B$ ou $I^B i$), Sangue AB ($I^A I^B$ - codominância) e Sangue O ($ii$ - recessivo duplo).",
+        ex: "Cruzamento entre heterozigotos $Aa \\times Aa$ gera proporção genotípica $1\\text{ }AA : 2\\text{ }Aa : 1\\text{ }aa$ e proporção fenotípica $3\\text{ Dominantes} : 1\\text{ Recessivo}$.",
+        peg: "Na eritroblastose fetal, a mãe DEVE ser obrigatoriamente Rh negativo ($Rh^-$) e o feto deve ser Rh positivo ($Rh^+$), após sensibilização prévia."
+      },
+      { grade: "2º Médio", bim: "2º Bimestre", subj: "História", title: "Brasil Império: Primeiro Reinado, Período Regencial e Segundo Reinado",
+        desc: "Constituição da Mandioca e de 1824, rebeliões provinciais (Cabanagem, Farroupilha), Golpe da Maioridade e o café no Vale do Paraíba.",
+        fund: "A Independência em 1822 preservou a unidade territorial continental brasileira e manteve a monarquia e a escravidão sob a liderança dos latifundiários.",
+        mec: "A Constituição de 1824 criou o Poder Moderador exclusivo do Imperador, permitindo a D. Pedro II dissolver a Câmara e nomear ministros ('Parlamentarismo às Avessas').",
+        ex: "A Tarifa Alves Branco (1844) elevou os impostos sobre importações, estimulando as primeiras manufaturas do Barão de Mauá.",
+        peg: "No parlamentarismo britânico clássico, o povo elege o parlamento e este escolhe o Primeiro-Ministro. No Brasil do II Reinado, o Imperador escolhia o Primeiro-Ministro e depois dissolvia a Câmara!"
+      },
+      { grade: "2º Médio", bim: "3º Bimestre", subj: "Geografia", title: "Industrialização Brasileira, Matriz de Transportes e Agronegócio",
+        desc: "Substituição de importações (Vargas), Plano de Metas (JK), rodoviarismo dependente de petróleo e fronteira agrícola moderna no Centro-Oeste.",
+        fund: "A industrialização brasileira foi tardia e concentrada regionalmente no Sudeste devido ao capital cafeeiro acumulado, ferrovias e mão de obra imigrante.",
+        mec: "O modelo rodoviarista de Juscelino Kubitschek integrou o país mas gerou custos logísticos elevados ('custo Brasil') e dependência extrema de combustíveis fósseis.",
+        ex: "A modernização agrícola da soja no Cerrado só foi viabilizada pelo desenvolvimento biotecnológico da Embrapa e correção da acidez do solo via calagem.",
+        peg: "Achar que a agricultura familiar não tem peso econômico. Mais de 70% dos alimentos básicos da mesa do brasileiro (mandioca, feijão, hortaliças) provêm de pequenos produtores familiares."
+      },
+      { grade: "2º Médio", bim: "4º Bimestre", subj: "Filosofia", title: "Filosofia Política Moderna: Contratualismo e Iluminismo",
+        desc: "Estado de Natureza e Contrato Social em Hobbes (segurança), Locke (propriedade privada) e Rousseau (vontade geral).",
+        fund: "Os contratualistas romperam com a tese do direito divino dos reis, sustentando que a legitimidade do poder político deriva de um pacto voluntário entre os cidadãos.",
+        mec: "Hobbes defende soberania absoluta do Leviatã para conter a guerra de todos contra todos. Locke defende governo limitado com direito à rebelião se violar a propriedade.",
+        ex: "Rousseau sustenta que 'o homem nasce livre, mas por toda parte encontra-se acorrentado', apontando a propriedade privada como origem da desigualdade social.",
+        peg: "Confundir Hobbes com Locke: Hobbes abdica de todos os direitos em troca da vida; Locke delega apenas o poder de punir, mantendo direitos inalienáveis invioláveis."
+      },
+      { grade: "2º Médio", bim: "1º Bimestre", subj: "Sociologia", title: "Os Três Clássicos da Sociologia: Durkheim, Marx e Weber",
+        desc: "Fato Social e Solidariedade (Durkheim), Materialismo Histórico e Mais-Valia (Marx) e Ação Social e Tipos Ideais (Weber).",
+        fund: "Os três autores estabeleceram os métodos sociológicos canônicos: o funcionalismo determinista (Durkheim), a crítica dialética revolucionária (Marx) e a sociologia compreensiva (Weber).",
+        mec: "Durkheim: o Fato Social é exterior ao indivíduo, coercitivo e geral. Marx: a Mais-Valia é a diferença entre o valor gerado pelo trabalho operário e o salário pago pelo capitalista.",
+        ex: "Para Max Weber, o surgimento do capitalismo moderno foi impulsionado pela ética ascética protestante calvinista que valorizava o trabalho metódico e a poupança.",
+        peg: "Achar que para Marx as ideias moldam a sociedade. Para o Materialismo Histórico, é a infraestrutura econômica material que determina a superestrutura jurídica e ideológica!"
+      },
+
+      // 3º ANO MÉDIO (ENEM & VESTIBULARES DE ELITE)
+      { grade: "3º Médio", bim: "1º Bimestre", subj: "Língua Portuguesa e Literatura", title: "Modernismo Brasileiro: 1ª, 2ª e 3ª Fases (1922 a 1960)",
+        desc: "Semana de 22, Fase Heroica (Mário/Oswald), Geração de 30 (Graciliano, Drummond, Jorge Amado) e Geração de 45 (Clarice Lispector e Guimarães Rosa).",
+        fund: "O Modernismo destruiu as amarras parnasianas em favor da linguagem coloquial, verso livre e reinvenção da identidade nacional multicultural.",
+        mec: "A Geração de 30 focou no Neorrealismo Regionalista nordestino ('Vidas Secas') denunciando a miséria da seca e a desumanização do homem pelo meio hostil.",
+        ex: "Em 'Vidas Secas', a cadela Baleia é humanizada em seus sonhos enquanto os membros da família de Fabiano são brutalizados e reduzidos ao silêncio gutural.",
+        peg: "Achar que a Semana de Arte Moderna de 1922 foi aclamada de imediato. Ela foi vaiada furiosamente pela elite paulistana que a julgava um absurdo grotesco."
+      },
+      { grade: "3º Médio", bim: "2º Bimestre", subj: "Matemática", title: "Análise Combinatória, Probabilidade Teórica e Estatística ENEM",
+        desc: "Princípio Fundamental da Contagem, Permutação, Combinação Simples ($C_{n,p}$), probabilidade condicional e medidas de tendência central.",
+        fund: "Em agrupamentos: se a ordem dos elementos altera o resultado (ex: senhas, pódio), utiliza-se Arranjo/Permutação. Se a ordem não importa (ex: comissões, equipes), usa-se Combinação.",
+        mec: "Fórmula da Combinação: $C_n^p = \\frac{n!}{p!(n-p)!}$. Probabilidade clássica: $P(A) = \\frac{\\text{Casos Favoráveis}}{\\text{Casos Possíveis}}$.",
+        ex: "Para formar uma comissão de 3 médicos a partir de 10 profissionais: $C_{10}^3 = \\frac{10 \\cdot 9 \\cdot 8}{3 \\cdot 2 \\cdot 1} = 120$ comissões possíveis.",
+        peg: "Confundir Média, Mediana e Moda em questões do ENEM: a Mediana exige obrigatoriamente ordenar os dados em ordem crescente (Rol) antes de achar o termo central!"
+      },
+      { grade: "3º Médio", bim: "3º Bimestre", subj: "Física", title: "Eletrodinâmica: Circuitos em Série/Paralelo, Potência e $kWh$",
+        desc: "Corrente elétrica ($i$), Leis de Ohm, associação mista de resistores, fusíveis e cálculo de fatura de energia elétrica.",
+        fund: "A potência elétrica dissipada representa a taxa de conversão de energia elétrica em térmica (Efeito Joule): $P = U \\cdot i = R \\cdot i^2 = \\frac{U^2}{R}$.",
+        mec: "Em paralelo: a DDP ($U$) é idêntica para todos os resistores. O inverso do resistor equivalente vale: $\\frac{1}{R_{eq}} = \\frac{1}{R_1} + \\frac{1}{R_2}$. Para dois: $R_{eq} = \\frac{R_1 \\cdot R_2}{R_1 + R_2}$.",
+        ex: "Um chuveiro elétrico de $5.500\\text{ W}$ ligado por 30 minutos diários consome: $E = P \\cdot \\Delta t = 5,5\\text{ kW} \\cdot 0,5\\text{ h} = 2,75\\text{ kWh}$ por dia (82,5 kWh no mês).",
+        peg: "Na posição 'Inverno' do chuveiro, a água fica mais quente porque a **resistência elétrica é MENOR**, gerando maior corrente ($i$) e maior potência ($P = U^2/R$)!"
+      },
+      { grade: "3º Médio", bim: "4º Bimestre", subj: "Química", title: "Química Orgânica: Funções Oxigenadas/Nitrogenadas e Isomeria",
+        desc: "Identificação de álcool, enol, fenol, cetona, aldeído, éter, éster, amina, amida e isomeria espacial geométrica (cis-trans) e óptica.",
+        fund: "O carbono é tetravalente, forma ligações múltiplas e encadeia-se formando esqueletos moleculares. A quiralidade exige carbono assimétrico com 4 ligantes diferentes.",
+        mec: "Álcool possui hidroxila ligada a carbono saturado ($C-OH$). Fenol possui hidroxila ligada diretamente ao anel aromático. Enol possui hidroxila ligada a carbono com dupla ligação.",
+        ex: "A Talidomida possui um enantiômero que acalmava enjoos gestacionais e outro isômero óptico que causava malformações fetais severas.",
+        peg: "Confundir Amina (derivada da amônia $R-NH_2$) com Amida (possui a carbonila ligada ao nitrogênio: $R-CO-NH_2$, como as ligações peptídicas das proteínas)."
+      },
+      { grade: "3º Médio", bim: "1º Bimestre", subj: "Biologia", title: "Ecologia Profunda: Ciclos Biogeoquímicos, Cadeias e Poluição",
+        desc: "Ciclo do Carbono e Nitrogênio, fluxo unidirecional de energia, bioacumulação (magnificação trófica) e eutrofização artificial.",
+        fund: "A energia dissipa-se ao longo da cadeia alimentar em forma de calor (apenas 10% passa para o nível seguinte), enquanto substâncias químicas não biodegradáveis acumulam-se.",
+        mec: "Na bioacumulação/magnificação trófica de metais pesados (mercúrio) ou agrotóxicos (DDT), os consumidores do topo da cadeia acumulam a **maior concentração tóxica**.",
+        ex: "Na eutrofização: excesso de esgoto/adubo ➔ proliferação de algas superficiais ➔ bloqueio da luz ➔ morte de vegetais subaquáticos ➔ decomposição aeróbica esgota o $O_2$ ➔ peixes morrem por asfixia.",
+        peg: "Achar que a energia se recicla na cadeia alimentar. A matéria é cíclica, mas o fluxo de energia é estritamente **unidirecional e decrescente**!"
+      },
+      { grade: "3º Médio", bim: "2º Bimestre", subj: "História", title: "Ditadura Militar Brasileira (1964-1985) e Redemocratização",
+        desc: "Golpe de 64, Atos Institucionais (AI-5 de 1968), Milagre Econômico, Guerrilha, Lei da Anistia de 1979 e Diretas Já.",
+        fund: "O regime militar instituiu o Terror de Estado por meio da Doutrina de Segurança Nacional, cassando mandatos, censurando a imprensa e torturando dissidentes políticos.",
+        mec: "O AI-5 suspendeu as garantias constitucionais fundamentais, permitindo fechar o Congresso, legislar por decretos e extinguir o habeas corpus para crimes políticos.",
+        ex: "O 'Milagre Econômico' (1968-1973) gerou crescimento do PIB superior a 10% ao ano sustentado por endividamento externo e arrocho salarial que concentrou a renda.",
+        peg: "Achar que a Lei da Anistia de 1979 foi ampla e irrestrita como queriam os movimentos civis; ela foi negociada pela cúpula militar para blindar agentes de segurança contra acusações de tortura."
+      },
+      { grade: "3º Médio", bim: "3º Bimestre", subj: "Geografia", title: "Nova Ordem Mundial, Geopolítica dos Conflitos e Crise Climática",
+        desc: "Mundo multipolar pós-Guerra Fria, ascensão da China, acordos climáticos globais (Acordo de Paris) e transição para energias renováveis.",
+        fund: "A geopolítica contemporânea é marcada pela competição comercial e tecnológica entre os Estados Unidos e a China pela hegemonia global do 5G e inteligência artificial.",
+        mec: "O aquecimento global é acelerado pela queima de combustíveis fósseis que intensificam o efeito estufa natural, gerando eventos meteorológicos extremos e degelo polar.",
+        ex: "A guerra da Ucrânia em 2022 evidenciou a fragilidade energética da Europa em relação ao gás fóssil russo, acelerando planos de transição energética.",
+        peg: "Confundir Efeito Estufa com Destruição da Camada de Ozônio. O Efeito Estufa retém calor infravermelho ($CO_2, CH_4$). A camada de ozônio filtra raios ultravioleta UV (degradada por CFCs)."
+      },
+      { grade: "3º Médio", bim: "4º Bimestre", subj: "Filosofia", title: "Ética Contemporânea, Escola de Frankfurt e Pós-Modernidade",
+        desc: "A Razão Instrumental (Adorno e Horkheimer), Indústria Cultural, Hannah Arendt (Banalidade do Mal) e Zygmunt Bauman.",
+        fund: "A Escola de Frankfurt denunciou que a razão iluminista emancipatória transformou-se em razão instrumental dominadora a serviço do consumo e do holocausto bélico.",
+        mec: "A Indústria Cultural padroniza bens culturais e artísticos para o consumo passivo das massas, anestesiando o pensamento crítico e gerando alienação social.",
+        ex: "Hannah Arendt analisou o julgamento de Adolf Eichmann em Jerusalém, concluindo que o mal extremo pode ser praticado por burocratas medíocres que apenas cumprem ordens sem reflexão moral.",
+        peg: "Achar que cultura de massa é a mesma coisa que cultura popular. Cultura popular nasce das tradições do povo; cultura de massa é manufaturada por conglomerados midiáticos para o lucro comercial."
+      },
+      { grade: "3º Médio", bim: "1º Bimestre", subj: "Sociologia", title: "Cidadania no Brasil, Movimentos Sociais e Desigualdade",
+        desc: "Conceito de cidadania em José Murilo de Carvalho (cidadãos de papel), racismo estrutural, feminismo e lutas dos povos indígenas.",
+        fund: "No Brasil, a cidadania desenvolveu-se na ordem inversa: primeiro os direitos sociais (Vargas), depois os direitos políticos e, por último, os direitos civis individuais básicos.",
+        mec: "O racismo estrutural manifesta-se em disparidades estatísticas no mercado de trabalho, na violência urbana desproporcional e na representação política no parlamento.",
+        ex: "O Estatuto da Cidade e a demarcação de terras indígenas cumprem a função social da propriedade prevista na Constituição de 1988.",
+        peg: "Achar que a abolição da escravidão em 1888 garantiu cidadania automática aos libertos. A Lei Áurea não concedeu terras, escolas ou indenização, empurrando os negros para as favelas e a marginalização."
+      }
+    ];
+
+    // INSERINDO NO BANCO GLOBAL
+    function buildTopicObject(item, index, levelPrefix) {
+      return {
+        id: `${levelPrefix}-${item.grade.replace(/\D/g,'')}-${item.subj.substring(0,3).toLowerCase()}-${index}`,
+        level: levelPrefix === "fund" ? "fundamental" : "medio",
+        gradeYear: item.grade,
+        bimester: item.bim,
+        subject: item.subj,
+        title: item.title,
+        drawingIcon: levelPrefix === "fund" ? "fa-school" : "fa-graduation-cap",
+        drawingLabel: item.subj.substring(0, 10),
+        whereToStudy: "Base Nacional Comum Curricular (BNCC), Matriz ENEM e Khan Academy Brasil.",
+        briefDescription: item.desc,
+        importance: "Cobrado frequentemente nas avaliações do SAEB, ENEM, vestibulares estaduais e federais com alto peso na pontuação da TRI.",
+        revisao: `⚡ <strong>Ponto Chave:</strong> ${item.desc}. ${item.peg}`,
+        resumida: `${item.fund} <em>Comando prático:</em> ${item.mec}`,
+        detalhada: `
+          <div class="space-y-4">
+            <div id="sec-fundamentos" class="scroll-target p-4 rounded-xl border border-slate-800 bg-[#080c14] space-y-2">
+              <h4 class="text-sm font-bold text-purple-400 flex items-center gap-2">
+                <i class="fa-solid fa-layer-group"></i> 1. Fundamentação Teórica Rigorosa
+              </h4>
+              <p class="text-slate-300 leading-relaxed text-xs sm:text-sm">
+                ${item.fund}
+              </p>
+            </div>
+
+            <div id="sec-mecanismos" class="scroll-target p-4 rounded-xl border border-slate-800 bg-[#080c14] space-y-2">
+              <h4 class="text-sm font-bold text-blue-400 flex items-center gap-2">
+                <i class="fa-solid fa-gears"></i> 2. Mecanismos Operacionais & Fórmulas Passo a Passo
+              </h4>
+              <p class="text-slate-300 leading-relaxed text-xs sm:text-sm">
+                ${item.mec}
+              </p>
+            </div>
+
+            <div id="sec-exemplos" class="scroll-target p-4 rounded-xl border border-slate-800 bg-[#080c14] space-y-2">
+              <h4 class="text-sm font-bold text-emerald-400 flex items-center gap-2">
+                <i class="fa-solid fa-file-signature"></i> 3. Caso Prático Resolvido & Análise Crítica
+              </h4>
+              <div class="p-3 bg-[#0e1422] rounded-lg border border-slate-800 text-xs sm:text-sm text-slate-300 space-y-1">
+                ${item.ex}
+              </div>
+            </div>
+
+            <div id="sec-pegadinhas" class="scroll-target p-4 rounded-xl border border-slate-800 bg-[#080c14] space-y-2">
+              <h4 class="text-sm font-bold text-amber-400 flex items-center gap-2">
+                <i class="fa-solid fa-triangle-exclamation"></i> 4. Distratores Típicos & Pegadinhas de Provas
+              </h4>
+              <p class="text-slate-300 leading-relaxed text-xs sm:text-sm">
+                ${item.peg}
+              </p>
+            </div>
+          </div>
+        `,
+        chartData: [
+          { label: "Domínio Conceitual", value: 40, color: "bg-purple-500" },
+          { label: "Cálculos / Aplicação", value: 35, color: "bg-blue-500" },
+          { label: "Identificação de Pegadinhas", value: 25, color: "bg-emerald-500" }
+        ],
+        mindMapNodes: {
+          center: item.title.substring(0, 18),
+          branches: [
+            { title: "1. Fundamentos", detail: "Teoria Formal", targetId: "sec-fundamentos" },
+            { title: "2. Mecanismos", detail: "Regras & Fórmulas", targetId: "sec-mecanismos" },
+            { title: "3. Aplicação", detail: "Exemplo Resolvido", targetId: "sec-exemplos" },
+            { title: "4. Distratores", detail: "Onde Muitos Erram", targetId: "sec-pegadinhas" }
+          ]
+        },
+        sources: [
+          `BRASIL. Ministério da Educação. Base Nacional Comum Curricular (BNCC - ${item.subj}).`,
+          `INEP. Matriz de Referência para o ENEM: Área de ${item.subj}.`,
+          "Manuais Didáticos Oficiais Aprovados pelo PNLD."
+        ]
+      };
+    }
+
+    fundCurriculum.forEach((item, idx) => masterStudyDatabase.push(buildTopicObject(item, idx, "fund")));
+    medioCurriculum.forEach((item, idx) => masterStudyDatabase.push(buildTopicObject(item, idx, "med")));
+
+    // --- MÓDULOS DE ENSINO SUPERIOR & IDIOMAS ---
+    masterStudyDatabase.push({
+      id: "fac-direito-const",
+      level: "faculdade",
+      gradeYear: "Direito",
+      bimester: "1º Semestre",
+      subject: "Direito Constitucional",
+      title: "Teoria da Constituição, Eficácia das Normas e Controle Difuso",
+      drawingIcon: "fa-scale-balanced",
+      drawingLabel: "Constitucional",
+      whereToStudy: "STF (Jurisprudência em Teses), Obras de Gilmar Mendes e José Afonso da Silva.",
+      briefDescription: "Estrutura do Poder Constituinte, classificação de José Afonso da Silva para normas de eficácia plena, contida e limitada, e modelo misto de jurisdição constitucional.",
+      importance: "Disciplina basilar de todo concurso da magistratura, defensoria e exame da OAB.",
+      revisao: "Norma Plena: Autoaplicável imediata. Norma Contida: Plena até que lei futura restrinja. Norma Limitada: Depende de regulamentação para ter efeitos.",
+      resumida: "O Direito Constitucional organiza a soberania política do Estado e resguarda os direitos fundamentais. O sistema brasileiro adota o controle concentrado abstrato perante o STF e o controle difuso concreto perante qualquer juiz.",
+      detalhada: `
+        <div class="space-y-4">
+          <div id="sec-fundamentos" class="scroll-target p-4 rounded-xl border border-slate-800 bg-[#080c14] space-y-2">
+            <h4 class="text-sm font-bold text-purple-400">1. O Poder Constituinte e a Pirâmide Kelseniana</h4>
+            <p class="text-slate-300 text-xs sm:text-sm">O Poder Constituinte Originário é inicial, autônomo e incondicionado juridicamente. O Derivado sujeita-se a limites formais e às cláusulas pétreas (Art. 60, §4º).</p>
+          </div>
+          <div id="sec-mecanismos" class="scroll-target p-4 rounded-xl border border-slate-800 bg-[#080c14] space-y-2">
+            <h4 class="text-sm font-bold text-blue-400">2. Classificação de José Afonso da Silva</h4>
+            <p class="text-slate-300 text-xs sm:text-sm">Normas de Eficácia Plena produzem efeitos integrais imediatos. Contidas admitem restrição legislativa posterior. Limitadas exigem lei regulamentadora prévia.</p>
+          </div>
+          <div id="sec-exemplos" class="scroll-target p-4 rounded-xl border border-slate-800 bg-[#080c14] space-y-2">
+            <h4 class="text-sm font-bold text-emerald-400">3. Caso Prático STF</h4>
+            <p class="text-slate-300 text-xs sm:text-sm">No MI 670/ES, diante da omissão legislativa sobre a greve de servidores públicos (norma limitada), o STF mandou aplicar analogamente a lei de greve do setor privado.</p>
+          </div>
+          <div id="sec-pegadinhas" class="scroll-target p-4 rounded-xl border border-slate-800 bg-[#080c14] space-y-2">
+            <h4 class="text-sm font-bold text-amber-400">4. Reserva de Plenário (Art. 97)</h4>
+            <p class="text-slate-300 text-xs sm:text-sm">Em controle difuso, uma turma ou câmara isolada não pode declarar inconstitucionalidade sem submeter ao plenário (Súmula Vinculante 10).</p>
+          </div>
+        </div>
+      `,
+      chartData: [{ label: "Eficácia das Normas", value: 40, color: "bg-blue-500" }, { label: "Controle Difuso/Concentrado", value: 35, color: "bg-purple-500" }, { label: "Cláusulas Pétreas", value: 25, color: "bg-red-500" }],
+      mindMapNodes: { center: "Constitucional", branches: [{ title: "1. Kelsen", detail: "Poder Originário", targetId: "sec-fundamentos" }, { title: "2. Eficácia", detail: "Plena/Contida/Limitada", targetId: "sec-mecanismos" }, { title: "3. STF", detail: "Mandado Injunção", targetId: "sec-exemplos" }, { title: "4. Súmula 10", detail: "Reserva de Plenário", targetId: "sec-pegadinhas" }] },
+      sources: ["SILVA, José Afonso da. Curso de Direito Constitucional Positivo.", "MENDES, Gilmar. Curso de Direito Constitucional."]
+    });
+
+    masterStudyDatabase.push({
+      id: "fac-mat-calculo1",
+      level: "faculdade",
+      gradeYear: "Matemática & Engenharias",
+      bimester: "1º Semestre",
+      subject: "Cálculo Diferencial I",
+      title: "Cálculo Diferencial: Definição de Limites, Derivada e Otimização",
+      drawingIcon: "fa-infinity",
+      drawingLabel: "Cálculo I",
+      whereToStudy: "MIT OpenCourseWare, Stewart (Cálculo Vol 1), Guidorizzi.",
+      briefDescription: "Formalização Épsilon-Delta, interpretação cinemática/geométrica da derivada e Teorema de Fermat para máximos e mínimos.",
+      importance: "Pilar de modelagem matemática em ciências físicas, econômicas e machine learning.",
+      softwares: [{ name: "GeoGebra", type: "Geometria Dinâmica", link: "Web" }, { name: "WolframAlpha", type: "Motor Algébrico", link: "Web" }],
+      revisao: "Derivada = coeficiente angular da reta tangente. Se f'(x)=0 e f''(x)<0, é ponto de MÁXIMO local!",
+      resumida: "O Cálculo formaliza taxas instantâneas de variação. O limite da razão incremental elimina paradoxos de divisão por zero e origina as regras do produto, quociente e cadeia.",
+      detalhada: `
+        <div class="space-y-4">
+          <div id="sec-fundamentos" class="scroll-target p-4 rounded-xl border border-slate-800 bg-[#080c14] space-y-2">
+            <h4 class="text-sm font-bold text-purple-400">1. Formalização de Cauchy-Weierstrass</h4>
+            <p class="text-slate-300 text-xs sm:text-sm">A derivada $f'(x) = \\lim_{h \\to 0} [f(x+h) - f(x)] / h$ fornece a inclinação instantânea da curva no ponto.</p>
+          </div>
+          <div id="sec-mecanismos" class="scroll-target p-4 rounded-xl border border-slate-800 bg-[#080c14] space-y-2">
+            <h4 class="text-sm font-bold text-blue-400">2. Regra da Cadeia</h4>
+            <p class="text-slate-300 text-xs sm:text-sm">Para funções compostas $y = f(g(x))$, deriva-se a externa e multiplica-se pela derivada da interna: $dy/dx = f'(g(x)) \\cdot g'(x)$.</p>
+          </div>
+          <div id="sec-exemplos" class="scroll-target p-4 rounded-xl border border-slate-800 bg-[#080c14] space-y-2">
+            <h4 class="text-sm font-bold text-emerald-400">3. Otimização de Área</h4>
+            <p class="text-slate-300 text-xs sm:text-sm">Para cercar uma área retangular máxima com perímetro fixo $2x + 2y = 100$, a derivada indica que a figura ótima é um quadrado de $x=25, y=25$.</p>
+          </div>
+          <div id="sec-pegadinhas" class="scroll-target p-4 rounded-xl border border-slate-800 bg-[#080c14] space-y-2">
+            <h4 class="text-sm font-bold text-amber-400">4. Descontinuidade e Cúspides</h4>
+            <p class="text-slate-300 text-xs sm:text-sm">A função modular $f(x)=|x|$ é contínua em $x=0$, mas NÃO é diferenciável porque as derivadas laterais são diferentes ($-1$ e $+1$).</p>
+          </div>
+        </div>
+      `,
+      chartData: [{ label: "Regra da Cadeia", value: 40, color: "bg-blue-500" }, { label: "Otimização", value: 35, color: "bg-purple-500" }, { label: "Definição Rigorosa", value: 25, color: "bg-emerald-500" }],
+      mindMapNodes: { center: "Cálculo I", branches: [{ title: "1. Limite Epsilon", detail: "Definição Rigorosa", targetId: "sec-fundamentos" }, { title: "2. Regra Cadeia", detail: "Compostas", targetId: "sec-mecanismos" }, { title: "3. Otimização", detail: "2ª Derivada", targetId: "sec-exemplos" }, { title: "4. Módulo |x|", detail: "Não-diferenciável", targetId: "sec-pegadinhas" }] },
+      sources: ["STEWART, James. Cálculo: Volume 1.", "GUIDORIZZI, Hamilton. Um Curso de Cálculo."]
+    });
+
+    masterStudyDatabase.push({
+      id: "curso-ingles-avancado",
+      level: "cursos",
+      gradeYear: "Idiomas",
+      bimester: "Fluência & Escrita C1/C2",
+      subject: "Língua Inglesa",
+      title: "Gramática Avançada: Inversão Sintática, Condicionais Mistas e Idioms",
+      drawingIcon: "fa-language",
+      drawingLabel: "Inglês",
+      whereToStudy: "Cambridge English Corpus, BBC Learning English, Oxford Advanced.",
+      briefDescription: "Negative Inversion ('Rarely have I seen...'), 3ª condicional mista e regência precisa de preposições temporais e espaciais (at, on, in).",
+      importance: "Diferencial de distinção para pontuações C1/C2 no TOEFL, IELTS e comunicações internacionais.",
+      softwares: [{ name: "Anki SRS", type: "Repetição Espaçada", link: "Grátis" }],
+      revisao: "Negative Inversion: Começou com advérbio negativo? Inverta a ordem sujeito-auxiliar ('Seldom do we witness...')!",
+      resumida: "O domínio maduro do inglês exige construções de ênfase estilística com inversões negativas e condicionais trans-temporais.",
+      detalhada: `
+        <div class="space-y-4">
+          <div id="sec-fundamentos" class="scroll-target p-4 rounded-xl border border-slate-800 bg-[#080c14] space-y-2">
+            <h4 class="text-sm font-bold text-purple-400">1. Negative Inversion</h4>
+            <p class="text-slate-300 text-xs sm:text-sm">Com <em>Rarely, Seldom, Under no circumstances</em>, o auxiliar antecede o sujeito: 'Rarely have I seen such dedication'.</p>
+          </div>
+          <div id="sec-mecanismos" class="scroll-target p-4 rounded-xl border border-slate-800 bg-[#080c14] space-y-2">
+            <h4 class="text-sm font-bold text-blue-400">2. Mixed Conditionals</h4>
+            <p class="text-slate-300 text-xs sm:text-sm">Passado irreal influenciando o presente: 'If I had studied medicine (past), I would be a doctor now (present)'.</p>
+          </div>
+          <div id="sec-exemplos" class="scroll-target p-4 rounded-xl border border-slate-800 bg-[#080c14] space-y-2">
+            <h4 class="text-sm font-bold text-emerald-400">3. Preposições AT, ON e IN</h4>
+            <p class="text-slate-300 text-xs sm:text-sm">AT para horas e locais pontuais (at 5 PM, at home). ON para dias e superfícies (on Friday, on the bus). IN para meses, anos e volumes (in July, in 2024, in the room).</p>
+          </div>
+          <div id="sec-pegadinhas" class="scroll-target p-4 rounded-xl border border-slate-800 bg-[#080c14] space-y-2">
+            <h4 class="text-sm font-bold text-amber-400">4. False Friends Comuns</h4>
+            <p class="text-slate-300 text-xs sm:text-sm"><em>Actually</em> significa 'na verdade' (e não atualmente); <em>Pretend</em> significa 'fingir' (e não pretender); <em>Comprehensive</em> significa 'amplo/completo'.</p>
+          </div>
+        </div>
+      `,
+      chartData: [{ label: "Inversão Sintática", value: 40, color: "bg-purple-500" }, { label: "Mixed Conditionals", value: 35, color: "bg-blue-500" }, { label: "Preposições", value: 25, color: "bg-emerald-500" }],
+      mindMapNodes: { center: "Inglês C1/C2", branches: [{ title: "1. Negative Inversion", detail: "Rarely have I...", targetId: "sec-fundamentos" }, { title: "2. Mixed Cond", detail: "If had + would", targetId: "sec-mecanismos" }, { title: "3. Preposições", detail: "At, On, In", targetId: "sec-exemplos" }, { title: "4. Falsos Amigos", detail: "Actually, Pretend", targetId: "sec-pegadinhas" }] },
+      sources: ["HEWINGS, Martin. Advanced Grammar in Use. Cambridge.", "SWAN, Michael. Practical English Usage."]
+    });
+
+    /* ==========================================================================
+       6. ESTADO & RENDERIZADORES
+       ========================================================================== */
+    let currentLevel = "fundamental";
+    let currentSelectedId = masterStudyDatabase[0].id;
+    let currentDepthMode = "detalhada";
+    let currentLanguage = "pt";
+
+    function setLanguage(lang) {
+      currentLanguage = lang;
+      document.getElementById('btn-lang-pt').className = lang === 'pt' 
+        ? "px-2 py-1 rounded text-xs font-semibold bg-purple-600/30 text-purple-300 border border-purple-500/40"
+        : "px-2 py-1 rounded text-xs font-semibold text-slate-400 hover:text-white hover:bg-[#0e1422]";
+      document.getElementById('btn-lang-en').className = lang === 'en' 
+        ? "px-2 py-1 rounded text-xs font-semibold bg-purple-600/30 text-purple-300 border border-purple-500/40"
+        : "px-2 py-1 rounded text-xs font-semibold text-slate-400 hover:text-white hover:bg-[#0e1422]";
+      renderCatalog();
+      renderStudyDetail();
+    }
+
+    function filterByLevel(level) {
+      currentLevel = level;
+      ['fundamental', 'medio', 'faculdade', 'cursos'].forEach(l => {
+        const btn = document.getElementById(`nav-btn-${l}`);
+        if (btn) {
+          if (l === level) btn.classList.add('btn-gradient-active');
+          else btn.classList.remove('btn-gradient-active');
+        }
+      });
+      document.getElementById('nav-btn-enem').classList.remove('btn-gradient-active');
+      document.getElementById('nav-btn-redacao').classList.remove('btn-gradient-active');
+      document.getElementById('nav-btn-salvos').classList.remove('btn-gradient-active');
+
+      const labelMap = {
+        fundamental: "Ensino Fundamental (6º ao 9º Ano - BNCC Oficial)",
+        medio: "Ensino Médio (1º ao 3º Ano • 9 Disciplinas ENEM)",
+        faculdade: "Faculdade & Graduação Superior",
+        cursos: "Idiomas & Habilidades Profissionais"
+      };
+      document.getElementById('currentLevelBadge').textContent = labelMap[level] || "Matérias";
+
+      updateFilterDropdowns();
+      applyFilters();
+      switchMainView('catalog');
+    }
+
+    function openEnemHub(subTab = 'visao-geral') {
+      switchMainView('enem');
+      document.getElementById('nav-btn-enem').classList.add('btn-gradient-active');
+      if (subTab === 'redacao') {
+        document.getElementById('nav-btn-redacao').classList.add('btn-gradient-active');
+        switchEnemSubTab('redacao-modelos');
+      } else {
+        document.getElementById('nav-btn-redacao').classList.remove('btn-gradient-active');
+        switchEnemSubTab('tri-estrategia');
+      }
+
+      ['fundamental', 'medio', 'faculdade', 'cursos', 'salvos'].forEach(l => {
+        const btn = document.getElementById(`nav-btn-${l}`);
+        if (btn) btn.classList.remove('btn-gradient-active');
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function switchEnemSubTab(tab) {
+      const tabs = ['modelos', 'gramatica', 'vocab', 'tri', 'checklist'];
+      tabs.forEach(t => {
+        const view = document.getElementById(`enemSubView-${t}`);
+        const btn = document.getElementById(`btn-enem-tab-${t}`);
+        if (view && btn) {
+          view.classList.add('hidden');
+          btn.className = "px-3.5 py-2 rounded-lg text-slate-400 hover:text-white border border-transparent hover:border-slate-800 flex items-center gap-1.5 transition";
+        }
+      });
+
+      const cleanTab = tab.replace('redacao-', '').replace('-dicas', '').replace('-elite', '').replace('-estrategia', '').replace('-areas', '');
+      const currentView = document.getElementById(`enemSubView-${cleanTab}`);
+      const activeBtnId = tab.includes('modelo') ? 'btn-enem-tab-modelos' :
+                          tab.includes('gramatica') ? 'btn-enem-tab-gramatica' :
+                          tab.includes('vocab') ? 'btn-enem-tab-vocab' :
+                          tab.includes('tri') ? 'btn-enem-tab-tri' : 'btn-enem-tab-checklist';
+      
+      const currentBtn = document.getElementById(activeBtnId);
+      if (currentView) currentView.classList.remove('hidden');
+      if (currentBtn) currentBtn.className = "px-3.5 py-2 rounded-lg bg-purple-600/30 text-purple-300 border border-purple-500/40 flex items-center gap-1.5 transition font-semibold";
+    }
+
+    function updateFilterDropdowns() {
+      const gradeSelect = document.getElementById('selectGradeYear');
+      const subjectSelect = document.getElementById('selectSubject');
+      const bimesterSelect = document.getElementById('selectBimester');
+      const labelGrade = document.getElementById('filterLabelGrade');
+      const labelSubject = document.getElementById('filterLabelSubject');
+
+      if (currentLevel === 'faculdade') {
+        labelGrade.textContent = "Curso Superior:";
+        labelSubject.textContent = "Disciplina:";
+      } else if (currentLevel === 'cursos') {
+        labelGrade.textContent = "Área:";
+        labelSubject.textContent = "Curso:";
+      } else {
+        labelGrade.textContent = "Série/Ano:";
+        labelSubject.textContent = "Disciplina:";
+      }
+
+      const itemsOfLevel = masterStudyDatabase.filter(item => item.level === currentLevel);
+      const uniqueGrades = Array.from(new Set(itemsOfLevel.map(i => i.gradeYear)));
+      const uniqueSubjects = Array.from(new Set(itemsOfLevel.map(i => i.subject)));
+
+      gradeSelect.innerHTML = `<option value="todos">Todos</option>` + 
+        uniqueGrades.map(g => `<option value="${g}">${g}</option>`).join('');
+
+      subjectSelect.innerHTML = `<option value="todas">Todas</option>` + 
+        uniqueSubjects.map(s => `<option value="${s}">${s}</option>`).join('');
+
+      bimesterSelect.value = "todos";
+    }
+
+    function applyFilters() {
+      const selectedGrade = document.getElementById('selectGradeYear').value;
+      const selectedSubject = document.getElementById('selectSubject').value;
+      const selectedBimester = document.getElementById('selectBimester').value;
+
+      let filtered = masterStudyDatabase.filter(item => item.level === currentLevel);
+
+      if (selectedGrade !== 'todos') filtered = filtered.filter(item => item.gradeYear === selectedGrade);
+      if (selectedSubject !== 'todas') filtered = filtered.filter(item => item.subject === selectedSubject);
+      if (selectedBimester !== 'todos') filtered = filtered.filter(item => item.bimester.includes(selectedBimester) || selectedBimester.includes(item.bimester));
+
+      document.getElementById('topicCountBadge').textContent = `(${filtered.length} temas disponíveis com fundamentação completa)`;
+      renderCatalog(filtered);
+    }
+
+    function resetFilters() {
+      document.getElementById('selectGradeYear').value = "todos";
+      document.getElementById('selectSubject').value = "todas";
+      document.getElementById('selectBimester').value = "todos";
+      applyFilters();
+    }
+
+    function renderCatalogCards(items, container) {
+      items.forEach(topic => {
+        const saved = isTopicSaved(topic.id);
+        const card = document.createElement("div");
+        card.className = "bg-[#0e1422] border border-slate-800 rounded-xl p-4 hover:border-slate-700 transition flex flex-col justify-between shadow-md relative group overflow-hidden";
+
+        card.innerHTML = `
+          <div class="overflow-hidden">
+            <div class="flex items-start justify-between gap-2.5 mb-2.5">
+              <div class="flex items-center gap-2 min-w-0">
+                <div class="w-8 h-8 rounded-lg bg-[#080c14] border border-slate-800 flex items-center justify-center text-purple-400 text-xs flex-shrink-0">
+                  <i class="fa-solid ${topic.drawingIcon}"></i>
+                </div>
+                <div class="min-w-0">
+                  <div class="flex items-center gap-1.5 flex-wrap">
+                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-blue-950/80 text-blue-300 border border-blue-800/40">${topic.bimester}</span>
+                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-purple-950/80 text-purple-300 border border-purple-800/40">${topic.gradeYear}</span>
+                  </div>
+                  <span class="text-[11px] text-slate-400 font-semibold truncate block">${topic.subject}</span>
+                </div>
+              </div>
+
+              <button onclick="toggleSaveTopic('${topic.id}', event)" title="${saved ? 'Remover dos favoritos' : 'Salvar para revisar'}" class="p-1.5 rounded-lg border ${saved ? 'border-amber-500/40 bg-amber-500/10 text-amber-400' : 'border-slate-800 hover:border-slate-700 text-slate-500 hover:text-white'} text-xs transition flex-shrink-0">
+                <i class="${saved ? 'fa-solid fa-bookmark' : 'fa-regular fa-bookmark'}"></i>
+              </button>
+            </div>
+
+            <h3 class="font-heading font-bold text-sm text-white mb-2 group-hover:text-purple-300 transition leading-snug break-words">
+              ${topic.title}
+            </h3>
+
+            <div class="space-y-1.5 text-xs text-slate-300 mb-3 bg-[#080c14] p-2.5 rounded-lg border border-slate-800/60 overflow-hidden">
+              <p class="text-slate-300 line-clamp-2 break-words">${topic.briefDescription}</p>
+            </div>
+          </div>
+
+          <div class="pt-2 flex items-center justify-between border-t border-slate-800/70">
+            <span class="text-[9px] font-mono text-slate-500">
+              <i class="fa-solid fa-bolt-lightning text-amber-400 mr-1"></i> Teoria + Macetes
+            </span>
+            <button onclick="selectTopic('${topic.id}')" class="px-3 py-1 rounded-lg text-xs font-semibold text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 flex items-center gap-1 transition">
+              <span>Abrir Conteúdo</span>
+              <i class="fa-solid fa-arrow-right text-[9px]"></i>
+            </button>
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    function renderCatalog(filteredData = null) {
+      if (currentLevel === 'salvos') {
+        renderSavedTopicsCatalog();
+        return;
+      }
+
+      const catalog = document.getElementById("catalogView");
+      if (!catalog) return;
+      catalog.innerHTML = "";
+
+      const dataToDisplay = filteredData || masterStudyDatabase.filter(item => item.level === currentLevel);
+
+      if (dataToDisplay.length === 0) {
+        catalog.innerHTML = `
+          <div class="col-span-full py-12 text-center text-slate-500">
+            <i class="fa-solid fa-filter-circle-xmark text-3xl mb-2 text-slate-600"></i>
+            <p class="text-xs">Nenhum módulo encontrado para os filtros selecionados.</p>
+            <button onclick="resetFilters()" class="mt-2 text-xs text-purple-400 hover:underline">Limpar filtros</button>
+          </div>
+        `;
+        return;
+      }
+
+      renderCatalogCards(dataToDisplay, catalog);
+    }
+
+    function renderStudyDetail() {
+      const topic = masterStudyDatabase.find(t => t.id === currentSelectedId) || masterStudyDatabase[0];
+      if (!topic) return;
+
+      document.getElementById('topicTitle').textContent = topic.title;
+      document.getElementById('topicSubtitle').textContent = topic.briefDescription;
+      document.getElementById('topicBreadcrumb').textContent = `${topic.level.toUpperCase()} > ${topic.gradeYear} > ${topic.bimester} > ${topic.subject}`;
+      document.getElementById('topicGradeTag').textContent = topic.gradeYear;
+      document.getElementById('topicBimesterTag').textContent = topic.bimester;
+      document.getElementById('topicSubjectTag').textContent = topic.subject;
+
+      updateSaveButtonUI(isTopicSaved(topic.id));
+
+      const softBox = document.getElementById('softwareAlternativesBox');
+      const softContainer = document.getElementById('softwareBadgesContainer');
+      if (topic.softwares && topic.softwares.length > 0) {
+        softBox.classList.remove('hidden');
+        softContainer.innerHTML = topic.softwares.map(s => `
+          <div class="bg-[#0e1422] border border-slate-700/80 px-2.5 py-1 rounded-lg flex items-center gap-2">
+            <span class="font-bold text-white">${s.name}</span>
+            <span class="text-slate-500 text-[10px]">(${s.type})</span>
+            <span class="px-1.5 py-0.2 rounded bg-blue-900/40 text-blue-300 text-[9px]">${s.link}</span>
+          </div>
+        `).join('');
+      } else {
+        softBox.classList.add('hidden');
+      }
+
+      updateContentByDepthMode(topic);
+      renderMacetesBox(topic);
+      renderTopicChart(topic);
+      renderTopicMindMap(topic);
+
+      const sourcesList = document.getElementById('topicSourcesList');
+      sourcesList.innerHTML = topic.sources.map(src => `<li>${src}</li>`).join('');
+    }
+
+    function renderMacetesBox(topic) {
+      const container = document.getElementById('topicMacetesContent');
+      const macetes = macetesRepository[topic.subject] || [
+        "🔹 <strong>Técnica de Recuperação Ativa:</strong> Feche os olhos agora e repita as 3 palavras-chave deste módulo em voz alta.",
+        "🔹 <strong>Gatilho de Memória:</strong> Crie um desenho exagerado no seu caderno associando o conceito central a uma situação cômica."
+      ];
+      container.innerHTML = macetes.map(m => `<div class="p-2.5 rounded bg-black/40 border border-amber-500/20 text-xs">${m}</div>`).join('');
+    }
+
+    function updateContentByDepthMode(topic) {
+      const container = document.getElementById('topicMainContent');
+      if (currentDepthMode === 'revisao') container.innerHTML = `<div class="p-3.5 bg-[#080c14] border border-amber-500/30 rounded-xl text-amber-200">${topic.revisao}</div>`;
+      else if (currentDepthMode === 'resumida') container.innerHTML = `<div class="p-3.5 bg-[#080c14] border border-slate-800 rounded-xl leading-relaxed">${topic.resumida}</div>`;
+      else container.innerHTML = topic.detalhada;
+    }
+
+    function setDepthMode(mode) {
+      currentDepthMode = mode;
+      ['revisao', 'resumida', 'detalhada'].forEach(m => {
+        const btn = document.getElementById(`btn-mode-${m}`);
+        if (m === mode) {
+          btn.className = "px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-purple-600/30 text-purple-300 border border-purple-500/40";
+        } else {
+          btn.className = "px-3.5 py-1.5 rounded-lg text-xs font-medium transition text-slate-400 hover:text-white";
+        }
+      });
+      const topic = masterStudyDatabase.find(t => t.id === currentSelectedId);
+      if (topic) updateContentByDepthMode(topic);
+    }
+
+    function selectTopic(id) {
+      currentSelectedId = id;
+      renderStudyDetail();
+      switchMainView('study');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderTopicMindMap(topic) {
+      const svg = document.getElementById('mindMapSvg');
+      const nodes = topic.mindMapNodes;
+      if (!nodes) return;
+
+      const centerX = 325;
+      const centerY = 115;
+
+      let svgHtml = `
+        <defs>
+          <linearGradient id="edgeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#3b82f6" />
+            <stop offset="50%" stop-color="#a855f7" />
+            <stop offset="100%" stop-color="#ef4444" />
+          </linearGradient>
+        </defs>
+      `;
+
+      const branchCoords = [
+        { x: 130, y: 45 },
+        { x: 130, y: 185 },
+        { x: 520, y: 45 },
+        { x: 520, y: 185 }
+      ];
+
+      nodes.branches.forEach((b, index) => {
+        const target = branchCoords[index] || { x: 200, y: 200 };
+        const targetId = b.targetId || "topicMainContent";
+
+        svgHtml += `
+          <path d="M ${centerX} ${centerY} C ${(centerX + target.x)/2} ${centerY}, ${(centerX + target.x)/2} ${target.y}, ${target.x} ${target.y}" 
+                stroke="url(#edgeGrad)" stroke-width="2" fill="none" stroke-dasharray="3 2" opacity="0.85" />
+          <g class="mindmap-node" onclick="scrollToSection('${targetId}')" title="Clique para rolar até esta explicação no texto!">
+            <rect x="${target.x - 95}" y="${target.y - 20}" width="190" height="40" rx="9" fill="#080c14" stroke="#334155" stroke-width="1.5" />
+            <text x="${target.x}" y="${target.y - 3}" fill="#ffffff" font-size="10" font-weight="bold" text-anchor="middle" font-family="'Plus Jakarta Sans'">${b.title}</text>
+            <text x="${target.x}" y="${target.y + 11}" fill="#38bdf8" font-size="8.5" font-weight="600" text-anchor="middle" font-family="'Plus Jakarta Sans'">🔗 ${b.detail}</text>
+          </g>
+        `;
+      });
+
+      svgHtml += `
+        <g class="mindmap-node" onclick="scrollToSection('topicTitle')">
+          <rect x="${centerX - 85}" y="${centerY - 24}" width="170" height="48" rx="12" fill="#1e1b4b" stroke="#a855f7" stroke-width="2" />
+          <text x="${centerX}" y="${centerY + 5}" fill="#f8fafc" font-size="11" font-weight="bold" text-anchor="middle" font-family="'Outfit'">${nodes.center}</text>
+        </g>
+      `;
+
+      svg.innerHTML = svgHtml;
+    }
+
+    function scrollToSection(sectionId) {
+      if (sectionId.startsWith('sec-') && currentDepthMode !== 'detalhada') {
+        setDepthMode('detalhada');
+      }
+
+      setTimeout(() => {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          el.classList.add('highlight-flash');
+          setTimeout(() => {
+            el.classList.remove('highlight-flash');
+          }, 1800);
+        }
+      }, 120);
+    }
+
+    function renderTopicChart(topic) {
+      const container = document.getElementById('chartVisualization');
+      container.innerHTML = "";
+
+      topic.chartData.forEach(item => {
+        const row = document.createElement("div");
+        row.className = "space-y-1";
+        row.innerHTML = `
+          <div class="flex justify-between text-xs">
+            <span class="font-medium text-slate-300">${item.label}</span>
+            <span class="font-mono text-slate-400">${item.value}%</span>
+          </div>
+          <div class="w-full h-2.5 bg-[#0e1422] rounded-full overflow-hidden border border-slate-800">
+            <div class="${item.color} h-full rounded-full transition-all duration-700" style="width: ${item.value}%"></div>
+          </div>
+        `;
+        container.appendChild(row);
+      });
+    }
+
+    function switchMainView(view) {
+      const catalog = document.getElementById('catalogView');
+      const study = document.getElementById('studyDetailView');
+      const tips = document.getElementById('studyTipsView');
+      const enem = document.getElementById('enemHubView');
+      const filterSection = document.getElementById('filterControlsSection');
+      const btnCatalog = document.getElementById('btnViewCatalog');
+      const btnStudy = document.getElementById('btnViewStudy');
+
+      catalog.classList.add('hidden');
+      study.classList.add('hidden');
+      tips.classList.add('hidden');
+      enem.classList.add('hidden');
+      filterSection.classList.remove('hidden');
+
+      if (view === 'catalog') {
+        catalog.classList.remove('hidden');
+        btnCatalog.className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-white flex items-center gap-1.5 border border-slate-700";
+        btnStudy.className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#080c14] text-slate-400 hover:text-white flex items-center gap-1.5 border border-slate-800";
+      } else if (view === 'study') {
+        study.classList.remove('hidden');
+        btnStudy.className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-white flex items-center gap-1.5 border border-slate-700";
+        btnCatalog.className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#080c14] text-slate-400 hover:text-white flex items-center gap-1.5 border border-slate-800";
+      } else if (view === 'tips') {
+        tips.classList.remove('hidden');
+        filterSection.classList.add('hidden');
+      } else if (view === 'enem') {
+        enem.classList.remove('hidden');
+        filterSection.classList.add('hidden');
+      }
+    }
+
+    function showSectionTab(tab) {
+      if (tab === 'materias') filterByLevel('fundamental');
+      else if (tab === 'dicas') switchMainView('tips');
+      else if (tab === 'enem') openEnemHub('visao-geral');
+    }
+
+    function handleSearch(term) {
+      const clearBtn = document.getElementById('clearSearchBtn');
+      if (!term.trim()) {
+        clearBtn.classList.add('hidden');
+        applyFilters();
+        return;
+      }
+      clearBtn.classList.remove('hidden');
+      const lower = term.toLowerCase();
+      const filtered = masterStudyDatabase.filter(item => 
+        item.title.toLowerCase().includes(lower) ||
+        item.subject.toLowerCase().includes(lower) ||
+        item.briefDescription.toLowerCase().includes(lower) ||
+        item.bimester.toLowerCase().includes(lower) ||
+        item.gradeYear.toLowerCase().includes(lower)
+      );
+      switchMainView('catalog');
+      document.getElementById('topicCountBadge').textContent = `(${filtered.length} encontrados na busca)`;
+      renderCatalog(filtered);
+    }
+
+    function clearSearch() {
+      const input = document.getElementById('globalSearch');
+      input.value = "";
+      document.getElementById('clearSearchBtn').classList.add('hidden');
+      applyFilters();
+    }
+
+    let currentSpeakingWord = "";
+    function showVocabularyModal(word) {
+      const modal = document.getElementById('vocabModal');
+      const cleanWord = word.trim();
+      const entry = dictionaryDatabase[cleanWord] || {
+        grammar: "conceito curricular específico",
+        meaning: "Conceito estruturante catalogado na base do Guide MemorizeAi.",
+        context: "Relevante para vestibulares, concursos e compreensão da BNCC."
+      };
+
+      currentSpeakingWord = cleanWord;
+      document.getElementById('vocabModalTerm').firstChild.textContent = cleanWord + " ";
+      document.getElementById('vocabModalGrammar').textContent = entry.grammar;
+      document.getElementById('vocabModalMeaning').textContent = entry.meaning;
+      document.getElementById('vocabModalContext').textContent = entry.context;
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeVocabModal() {
+      document.getElementById('vocabModal').classList.add('hidden');
+    }
+
+    function speakCurrentWord() {
+      if ('speechSynthesis' in window && currentSpeakingWord) {
+        const utterance = new SpeechSynthesisUtterance(currentSpeakingWord);
+        utterance.lang = 'pt-BR';
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    function openSettingsModal() {
+      document.getElementById('settingsModal').classList.remove('hidden');
+    }
+    function closeSettingsModal() {
+      document.getElementById('settingsModal').classList.add('hidden');
+    }
+
+    function setupMobileMenu() {
+      const btn = document.getElementById('mobileMenuBtn');
+      const sidebar = document.getElementById('sidebarMenu');
+      if (btn && sidebar) {
+        btn.addEventListener('click', () => {
+          sidebar.classList.toggle('hidden');
+        });
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      initTheme();
+      updateSavedBadges();
+      updateFilterDropdowns();
+      renderCatalog();
+      renderStudyDetail();
+      setupMobileMenu();
+    });
+  </script>
+</body>
+</html>
